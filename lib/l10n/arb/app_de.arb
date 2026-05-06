@@ -202,7 +202,7 @@
   "@optionsEmbedLyrics": {
     "description": "Embed lyrics in audio files"
   },
-  "optionsEmbedLyricsSubtitle": "Save synced lyrics alongside your downloaded tracks",
+  "optionsEmbedLyricsSubtitle": "Speichere synchronisierte Liedtexte zusammen mit heruntergeladenen Titeln",
   "@optionsEmbedLyricsSubtitle": {
     "description": "Subtitle for embed lyrics"
   },
@@ -695,7 +695,7 @@
   "@setupLanguageTitle": {
     "description": "Title for the language selection step in setup"
   },
-  "setupLanguageDescription": "Select your preferred language for the app. You can change this later in Settings.",
+  "setupLanguageDescription": "Wählen deine bevorzugte Sprache für die App. Dies kann später in den Einstellungen geändert werden.",
   "@setupLanguageDescription": {
     "description": "Description for the language selection step in setup"
   },
@@ -1223,11 +1223,11 @@
   "@providerPriorityFallbackExtensionsTitle": {
     "description": "Section title for choosing which download extensions can be used as fallback providers"
   },
-  "providerPriorityFallbackExtensionsDescription": "Choose which installed download extensions can be used during automatic fallback.",
+  "providerPriorityFallbackExtensionsDescription": "Wähle aus, welche installierten Download-Erweiterungen beim automatischen Fallback verwendet werden sollen.",
   "@providerPriorityFallbackExtensionsDescription": {
     "description": "Section description for extension fallback selection"
   },
-  "providerPriorityFallbackExtensionsHint": "Only enabled extensions with download-provider capability are listed here.",
+  "providerPriorityFallbackExtensionsHint": "Hier werden nur aktivierte Erweiterungen mit Download-Provider-Funktion aufgelistet.",
   "@providerPriorityFallbackExtensionsHint": {
     "description": "Hint below the extension fallback selection list"
   },
@@ -4486,7 +4486,7 @@
       }
     }
   },
-  "notifDownloadsCanceledTitle": "Downloads canceled",
+  "notifDownloadsCanceledTitle": "Downloads abgebrochen",
   "@notifDownloadsCanceledTitle": {
     "description": "Notification title when downloads are canceled by the user"
   },
@@ -4601,7 +4601,7 @@
   "@notifUpdateReady": {
     "description": "Notification title when app update download is complete"
   },
-  "notifUpdateReadyBody": "SpotiFLAC Mobile v{version} downloaded. Tap to install.",
+  "notifUpdateReadyBody": "SpotiFLAC Mobile v{version} heruntergeladen. Zum Installieren tippen.",
   "@notifUpdateReadyBody": {
     "description": "Notification body when app update is ready to install",
     "placeholders": {
@@ -4622,7 +4622,7 @@
   "@searchTracks": {
     "description": "Search filter label - tracks"
   },
-  "homeSearchHintDefault": "Paste supported URL or search...",
+  "homeSearchHintDefault": "Unterstützte URL einfügen oder suchen...",
   "@homeSearchHintDefault": {
     "description": "Default placeholder for the main search field on Home"
   },
@@ -4635,11 +4635,11 @@
       }
     }
   },
-  "homeImportCsvTooltip": "Import CSV",
+  "homeImportCsvTooltip": "CSV-Datei importieren",
   "@homeImportCsvTooltip": {
     "description": "Tooltip for importing a CSV file into Home search"
   },
-  "homeChangeSearchProviderTooltip": "Change search provider",
+  "homeChangeSearchProviderTooltip": "Suchanbieter ändern",
   "@homeChangeSearchProviderTooltip": {
     "description": "Tooltip for the Home search provider picker"
   },
@@ -4647,35 +4647,35 @@
   "@actionPaste": {
     "description": "Generic action - paste from clipboard"
   },
-  "searchTracksHint": "Search tracks...",
+  "searchTracksHint": "Titel suchen...",
   "@searchTracksHint": {
     "description": "Placeholder for the search screen input"
   },
-  "searchTracksEmptyPrompt": "Search for tracks",
+  "searchTracksEmptyPrompt": "Nach Titel suchen",
   "@searchTracksEmptyPrompt": {
     "description": "Empty-state prompt on the search screen"
   },
-  "tutorialSearchHint": "Paste or search...",
+  "tutorialSearchHint": "Einfügen oder suchen...",
   "@tutorialSearchHint": {
     "description": "Placeholder shown in the tutorial search demo"
   },
-  "tutorialDownloadCompletedSemantics": "Download completed",
+  "tutorialDownloadCompletedSemantics": "Download abgeschlossen",
   "@tutorialDownloadCompletedSemantics": {
     "description": "Accessibility label for completed download state in tutorial demo"
   },
-  "tutorialDownloadInProgressSemantics": "Download in progress",
+  "tutorialDownloadInProgressSemantics": "Download wird ausgeführt",
   "@tutorialDownloadInProgressSemantics": {
     "description": "Accessibility label for active download state in tutorial demo"
   },
-  "tutorialStartDownloadSemantics": "Start download",
+  "tutorialStartDownloadSemantics": "Download starten",
   "@tutorialStartDownloadSemantics": {
     "description": "Accessibility label for idle download button in tutorial demo"
   },
-  "optionsEmbedMetadata": "Embed Metadata",
+  "optionsEmbedMetadata": "Eingebettete Metadaten",
   "@optionsEmbedMetadata": {
     "description": "Settings toggle title for writing metadata into downloaded files"
   },
-  "optionsEmbedMetadataSubtitleOn": "Write metadata, cover art, and embedded lyrics to files",
+  "optionsEmbedMetadataSubtitleOn": "Schreibe Metadaten, Cover und eingebettete Songtexte in Dateien",
   "@optionsEmbedMetadataSubtitleOn": {
     "description": "Subtitle when metadata embedding is enabled"
   },
@@ -4695,11 +4695,11 @@
   "@trackCoverNoEmbeddedArt": {
     "description": "Message shown when a track file has no embedded cover art"
   },
-  "trackCoverReplace": "Replace Cover",
+  "trackCoverReplace": "Cover ersetzen",
   "@trackCoverReplace": {
     "description": "Button label for replacing selected cover art"
   },
-  "trackCoverPick": "Pick Cover",
+  "trackCoverPick": "Cover auswählen",
   "@trackCoverPick": {
     "description": "Button label for selecting cover art"
   },
@@ -4707,11 +4707,11 @@
   "@trackCoverClearSelected": {
     "description": "Tooltip for clearing the newly selected cover art"
   },
-  "trackCoverCurrent": "Current cover",
+  "trackCoverCurrent": "Aktuelles Cover",
   "@trackCoverCurrent": {
     "description": "Label for the currently embedded cover preview"
   },
-  "trackCoverSelected": "Selected cover",
+  "trackCoverSelected": "Ausgewähltes Cover",
   "@trackCoverSelected": {
     "description": "Label for the newly selected cover preview"
   },
@@ -4723,7 +4723,7 @@
   "@actionStop": {
     "description": "Generic action - stop"
   },
-  "queueFinalizingDownload": "Finalizing download",
+  "queueFinalizingDownload": "Download wird abgeschlossen",
   "@queueFinalizingDownload": {
     "description": "Accessibility label for a queue item that is finalizing"
   },
@@ -4731,7 +4731,7 @@
   "@queueDownloadedFileMissing": {
     "description": "Accessibility label when a downloaded file is missing from disk"
   },
-  "queueDownloadCompleted": "Download completed",
+  "queueDownloadCompleted": "Download abgeschlossen",
   "@queueDownloadCompleted": {
     "description": "Accessibility label for completed download state in queue"
   },
@@ -4744,11 +4744,11 @@
       }
     }
   },
-  "logAutoScrollOn": "Auto-scroll ON",
+  "logAutoScrollOn": "Auto-Scrollen AN",
   "@logAutoScrollOn": {
     "description": "Tooltip when auto-scroll is enabled on the log screen"
   },
-  "logAutoScrollOff": "Auto-scroll OFF",
+  "logAutoScrollOff": "Auto-Scrollen AUS",
   "@logAutoScrollOff": {
     "description": "Tooltip when auto-scroll is disabled on the log screen"
   },
@@ -4756,11 +4756,11 @@
   "@logCopyLogs": {
     "description": "Tooltip for copying logs"
   },
-  "logClearSearch": "Clear search",
+  "logClearSearch": "Suche löschen",
   "@logClearSearch": {
     "description": "Tooltip for clearing the log search field"
   },
-  "logIssueIspBlockingLabel": "ISP BLOCKING DETECTED",
+  "logIssueIspBlockingLabel": "ISP BLOCKIERUNG ERKANNT",
   "@logIssueIspBlockingLabel": {
     "description": "Diagnostic badge label when ISP blocking is detected"
   },
@@ -4772,11 +4772,11 @@
   "@logIssueIspBlockingSuggestion": {
     "description": "Diagnostic badge suggestion for ISP blocking"
   },
-  "logIssueRateLimitedLabel": "RATE LIMITED",
+  "logIssueRateLimitedLabel": "LIMIT ERKANNT",
   "@logIssueRateLimitedLabel": {
     "description": "Diagnostic badge label when the service rate limits requests"
   },
-  "logIssueRateLimitedDescription": "Too many requests to the service",
+  "logIssueRateLimitedDescription": "Zu viele Anfragen an den Dienst",
   "@logIssueRateLimitedDescription": {
     "description": "Diagnostic badge description for rate limiting"
   },
@@ -4784,7 +4784,7 @@
   "@logIssueRateLimitedSuggestion": {
     "description": "Diagnostic badge suggestion for rate limiting"
   },
-  "logIssueNetworkErrorLabel": "NETWORK ERROR",
+  "logIssueNetworkErrorLabel": "NETZWERKFEHLER",
   "@logIssueNetworkErrorLabel": {
     "description": "Diagnostic badge label for generic network errors"
   },
@@ -4796,7 +4796,7 @@
   "@logIssueNetworkErrorSuggestion": {
     "description": "Diagnostic badge suggestion for generic network errors"
   },
-  "logIssueTrackNotFoundLabel": "TRACK NOT FOUND",
+  "logIssueTrackNotFoundLabel": "TITEL NICHT GEFUNDEN",
   "@logIssueTrackNotFoundLabel": {
     "description": "Diagnostic badge label when a track is unavailable"
   },
@@ -4808,7 +4808,7 @@
   "@logIssueTrackNotFoundSuggestion": {
     "description": "Diagnostic badge suggestion when a track is unavailable"
   },
-  "clickableLookingUpArtist": "Looking up artist...",
+  "clickableLookingUpArtist": "Künstler wird gesucht...",
   "@clickableLookingUpArtist": {
     "description": "Snackbar shown while clickable artist metadata is being resolved"
   },
@@ -4825,11 +4825,11 @@
   "@extensionDetailsTags": {
     "description": "Section title for extension tags"
   },
-  "extensionDetailsInformation": "Information",
+  "extensionDetailsInformation": "Info",
   "@extensionDetailsInformation": {
     "description": "Section title for extension metadata information"
   },
-  "extensionUtilityFunctions": "Utility Functions",
+  "extensionUtilityFunctions": "Hilfsfunktionen",
   "@extensionUtilityFunctions": {
     "description": "Capability label for utility-only extensions"
   },
@@ -4837,7 +4837,7 @@
   "@actionDismiss": {
     "description": "Generic action - dismiss"
   },
-  "setupChangeFolderTooltip": "Change folder",
+  "setupChangeFolderTooltip": "Ordner ändern",
   "@setupChangeFolderTooltip": {
     "description": "Tooltip for editing the selected download folder"
   },
@@ -4853,7 +4853,7 @@
       }
     }
   },
-  "a11yOpenItem": "Open {itemType} {name}",
+  "a11yOpenItem": "{itemType} {name} öffnen",
   "@a11yOpenItem": {
     "description": "Accessibility label for opening a generic item",
     "placeholders": {
@@ -4913,7 +4913,7 @@
       }
     }
   },
-  "a11yOpenAlbum": "Open album {albumName}",
+  "a11yOpenAlbum": "Album öffnen {albumName}",
   "@a11yOpenAlbum": {
     "description": "Accessibility label for opening an album",
     "placeholders": {
