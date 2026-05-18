@@ -17,7 +17,7 @@
   "@navSettings": {
     "description": "Bottom navigation - Settings tab"
   },
-  "navStore": "Repo",
+  "navStore": "Repositori",
   "@navStore": {
     "description": "Bottom navigation - Extension store tab"
   },
@@ -25,15 +25,15 @@
   "@homeTitle": {
     "description": "Home screen title"
   },
-  "homeSubtitle": "Paste a supported URL or search by name",
+  "homeSubtitle": "Tempel URL yang didukung atau cari berdasarkan nama",
   "@homeSubtitle": {
     "description": "Subtitle shown below search box"
   },
-  "homeEmptyTitle": "No search providers yet",
+  "homeEmptyTitle": "Belum ada penyedia pencarian",
   "@homeEmptyTitle": {
     "description": "Title shown on home when no providers are available yet"
   },
-  "homeEmptySubtitle": "Install an extension to continue.",
+  "homeEmptySubtitle": "Instal ekstensi untuk melanjutkan.",
   "@homeEmptySubtitle": {
     "description": "Subtitle shown on home when no providers are available yet"
   },
@@ -97,11 +97,11 @@
   "@downloadFilenameFormat": {
     "description": "Setting for output filename pattern"
   },
-  "downloadSingleFilenameFormat": "Single Filename Format",
+  "downloadSingleFilenameFormat": "Format Nama Berkas Tunggal",
   "@downloadSingleFilenameFormat": {
     "description": "Setting for output filename pattern for singles/EPs"
   },
-  "downloadSingleFilenameFormatDescription": "Filename pattern for singles and EPs. Uses the same tags as the album format.",
+  "downloadSingleFilenameFormatDescription": "Pola nama file untuk single dan EP. Menggunakan tag yang sama dengan format album.",
   "@downloadSingleFilenameFormatDescription": {
     "description": "Subtitle description for single filename format setting"
   },
@@ -153,7 +153,7 @@
   "@optionsPrimaryProvider": {
     "description": "Main search provider setting"
   },
-  "optionsPrimaryProviderSubtitle": "Service used for searching by track or album name",
+  "optionsPrimaryProviderSubtitle": "Layanan yang digunakan untuk mencari berdasarkan nama lagu atau album",
   "@optionsPrimaryProviderSubtitle": {
     "description": "Subtitle for primary provider"
   },
@@ -166,11 +166,11 @@
       }
     }
   },
-  "optionsDefaultSearchTab": "Default Search Tab",
+  "optionsDefaultSearchTab": "Tab Pencarian Default",
   "@optionsDefaultSearchTab": {
     "description": "Title for the preferred default search tab setting"
   },
-  "optionsDefaultSearchTabSubtitle": "Choose which tab opens first for new search results.",
+  "optionsDefaultSearchTabSubtitle": "Pilih tab mana yang terbuka terlebih dahulu untuk hasil pencarian baru.",
   "@optionsDefaultSearchTabSubtitle": {
     "description": "Subtitle for the preferred default search tab setting"
   },
@@ -202,7 +202,7 @@
   "@optionsEmbedLyrics": {
     "description": "Embed lyrics in audio files"
   },
-  "optionsEmbedLyricsSubtitle": "Save synced lyrics alongside your downloaded tracks",
+  "optionsEmbedLyricsSubtitle": "Simpan lirik yang disinkronkan bersama dengan lagu yang Anda unduh",
   "@optionsEmbedLyricsSubtitle": {
     "description": "Subtitle for embed lyrics"
   },
@@ -218,35 +218,35 @@
   "@optionsReplayGain": {
     "description": "Title for ReplayGain setting toggle"
   },
-  "optionsReplayGainSubtitleOn": "Scan loudness and embed ReplayGain tags (EBU R128)",
+  "optionsReplayGainSubtitleOn": "Pindai kenyaringan dan sematkan tag ReplayGain (EBU R128)",
   "@optionsReplayGainSubtitleOn": {
     "description": "Subtitle when ReplayGain is enabled"
   },
-  "optionsReplayGainSubtitleOff": "Disabled: no loudness normalization tags",
+  "optionsReplayGainSubtitleOff": "Dinonaktifkan: tidak ada tag normalisasi kenyaringan",
   "@optionsReplayGainSubtitleOff": {
     "description": "Subtitle when ReplayGain is disabled"
   },
-  "optionsArtistTagMode": "Artist Tag Mode",
+  "optionsArtistTagMode": "Mode Tag Artis",
   "@optionsArtistTagMode": {
     "description": "Setting title for how artist metadata is written into files"
   },
-  "optionsArtistTagModeDescription": "Choose how multiple artists are written into embedded tags.",
+  "optionsArtistTagModeDescription": "Pilih bagaimana beberapa artis dicantumkan dalam tag yang disematkan.",
   "@optionsArtistTagModeDescription": {
     "description": "Bottom-sheet description for artist tag mode setting"
   },
-  "optionsArtistTagModeJoined": "Single joined value",
+  "optionsArtistTagModeJoined": "Nilai gabungan tunggal",
   "@optionsArtistTagModeJoined": {
     "description": "Artist tag mode option that joins multiple artists into one value"
   },
-  "optionsArtistTagModeJoinedSubtitle": "Write one ARTIST value like \"Artist A, Artist B\" for maximum player compatibility.",
+  "optionsArtistTagModeJoinedSubtitle": "Tuliskan satu nilai ARTIS seperti \"Artis A, Artis B\" untuk kompatibilitas pemain maksimal.",
   "@optionsArtistTagModeJoinedSubtitle": {
     "description": "Subtitle for joined artist tag mode"
   },
-  "optionsArtistTagModeSplitVorbis": "Split tags for FLAC/Opus",
+  "optionsArtistTagModeSplitVorbis": "Tag terpisah untuk FLAC/Opus",
   "@optionsArtistTagModeSplitVorbis": {
     "description": "Artist tag mode option that writes repeated ARTIST tags for Vorbis formats"
   },
-  "optionsArtistTagModeSplitVorbisSubtitle": "Write one artist tag per artist for FLAC and Opus; MP3 and M4A stay joined.",
+  "optionsArtistTagModeSplitVorbisSubtitle": "Tulis satu tag artis per artis untuk FLAC dan Opus; MP3 dan M4A tetap tergabung.",
   "@optionsArtistTagModeSplitVorbisSubtitle": {
     "description": "Subtitle for split Vorbis artist tag mode"
   },
