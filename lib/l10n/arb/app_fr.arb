@@ -986,7 +986,7 @@
   "@actionPause": {
     "description": "Action button - pause download"
   },
-  "actionResume": "Resume",
+  "actionResume": "Resumer",
   "@actionResume": {
     "description": "Action button - resume download"
   },
@@ -2351,7 +2351,7 @@
       }
     }
   },
-  "discographySkippedDownloaded": "{added} added, {skipped} already downloaded",
+  "discographySkippedDownloaded": "{added} ajouté, {skipped} déjà téléchargé",
   "@discographySkippedDownloaded": {
     "description": "Snackbar - with skipped tracks count",
     "placeholders": {
@@ -2757,11 +2757,11 @@
   "@tutorialSearchDesc": {
     "description": "Tutorial search page description"
   },
-  "tutorialDownloadTitle": "Downloading Music",
+  "tutorialDownloadTitle": "Télécharger de la musique",
   "@tutorialDownloadTitle": {
     "description": "Tutorial download page title"
   },
-  "tutorialDownloadDesc": "Downloading music is simple and fast. Here's how it works.",
+  "tutorialDownloadDesc": "Télécharger de la musique, c'est simple et rapide. Voici comment ça marche.",
   "@tutorialDownloadDesc": {
     "description": "Tutorial download page description"
   },
@@ -3055,27 +3055,27 @@
   "@trackReEnrich": {
     "description": "Menu action - re-embed metadata into audio file"
   },
-  "trackReEnrichOnlineSubtitle": "Search metadata online and embed into file",
+  "trackReEnrichOnlineSubtitle": "Rechercher des métadonnées en ligne et les intégrer dans un fichier",
   "@trackReEnrichOnlineSubtitle": {
     "description": "Subtitle for re-enrich metadata action for local items"
   },
-  "trackReEnrichFieldsTitle": "Fields to update",
+  "trackReEnrichFieldsTitle": "Champs à mettre à jour",
   "@trackReEnrichFieldsTitle": {
     "description": "Section title for field selection in re-enrich dialog"
   },
-  "trackReEnrichFieldCover": "Cover Art",
+  "trackReEnrichFieldCover": "Illustration de couverture",
   "@trackReEnrichFieldCover": {
     "description": "Checkbox label for cover art field in re-enrich"
   },
-  "trackReEnrichFieldLyrics": "Lyrics",
+  "trackReEnrichFieldLyrics": "Paroles",
   "@trackReEnrichFieldLyrics": {
     "description": "Checkbox label for lyrics field in re-enrich"
   },
-  "trackReEnrichFieldBasicTags": "Album, Album Artist",
+  "trackReEnrichFieldBasicTags": "Album, Album Artiste",
   "@trackReEnrichFieldBasicTags": {
     "description": "Checkbox label for basic tags in re-enrich (title/artist are never overwritten)"
   },
-  "trackReEnrichFieldTrackInfo": "Track & Disc Number",
+  "trackReEnrichFieldTrackInfo": "Numéro de piste & de disque",
   "@trackReEnrichFieldTrackInfo": {
     "description": "Checkbox label for track info in re-enrich"
   },
@@ -3083,19 +3083,19 @@
   "@trackReEnrichFieldReleaseInfo": {
     "description": "Checkbox label for release info in re-enrich"
   },
-  "trackReEnrichFieldExtra": "Genre, Label, Copyright",
+  "trackReEnrichFieldExtra": "Genre, Label, Droits d'auteur",
   "@trackReEnrichFieldExtra": {
     "description": "Checkbox label for extra metadata in re-enrich"
   },
-  "trackReEnrichSelectAll": "Select All",
+  "trackReEnrichSelectAll": "Tout sélectionner",
   "@trackReEnrichSelectAll": {
     "description": "Select all fields checkbox in re-enrich"
   },
-  "trackEditMetadata": "Edit Metadata",
+  "trackEditMetadata": "Modifier les métadonnées",
   "@trackEditMetadata": {
     "description": "Menu action - edit embedded metadata"
   },
-  "trackCoverSaved": "Cover art saved to {fileName}",
+  "trackCoverSaved": "La pochette a été enregistrée sous le nom {fileName}",
   "@trackCoverSaved": {
     "description": "Snackbar after cover art saved",
     "placeholders": {
@@ -3104,11 +3104,11 @@
       }
     }
   },
-  "trackCoverNoSource": "No cover art source available",
+  "trackCoverNoSource": "Aucune source d'illustration de couverture disponible",
   "@trackCoverNoSource": {
     "description": "Snackbar when no cover art URL or embedded cover"
   },
-  "trackLyricsSaved": "Lyrics saved to {fileName}",
+  "trackLyricsSaved": "Paroles enregistrées dans {fileName}",
   "@trackLyricsSaved": {
     "description": "Snackbar after lyrics saved",
     "placeholders": {
@@ -3117,27 +3117,27 @@
       }
     }
   },
-  "trackReEnrichProgress": "Re-enriching metadata...",
+  "trackReEnrichProgress": "Réenrichissement des métadonnées...",
   "@trackReEnrichProgress": {
     "description": "Snackbar while re-enriching metadata"
   },
-  "trackReEnrichSearching": "Searching metadata online...",
+  "trackReEnrichSearching": "Recherche de métadonnées en ligne...",
   "@trackReEnrichSearching": {
     "description": "Snackbar while searching metadata from internet for local items"
   },
-  "trackReEnrichSuccess": "Metadata re-enriched successfully",
+  "trackReEnrichSuccess": "Métadonnées réenrichies avec succès",
   "@trackReEnrichSuccess": {
     "description": "Snackbar after successful re-enrichment"
   },
-  "trackReEnrichFfmpegFailed": "FFmpeg metadata embed failed",
+  "trackReEnrichFfmpegFailed": "Échec de l'intégration des métadonnées FFmpeg",
   "@trackReEnrichFfmpegFailed": {
     "description": "Snackbar when FFmpeg embed fails for MP3/Opus"
   },
-  "queueFlacAction": "Queue FLAC",
+  "queueFlacAction": "File d'attente FLAC",
   "@queueFlacAction": {
     "description": "Action/button label for queueing FLAC redownloads for local tracks"
   },
-  "queueFlacConfirmMessage": "Search online matches for the selected tracks and queue FLAC downloads.\n\nExisting files will not be modified or deleted.\n\nOnly high-confidence matches are queued automatically.\n\n{count} selected",
+  "queueFlacConfirmMessage": "Recherchez en ligne les correspondances pour les morceaux sélectionnés et ajoutez les téléchargements FLAC à la file d'attente.\n\nLes fichiers existants ne seront ni modifiés ni supprimés.\n\nSeules les correspondances hautement fiables sont automatiquement ajoutées à la file d'attente.\n\n{count} sélectionnés",
   "@queueFlacConfirmMessage": {
     "description": "Confirmation dialog body before queueing FLAC redownloads for local tracks",
     "placeholders": {
@@ -3146,7 +3146,7 @@
       }
     }
   },
-  "queueFlacFindingProgress": "Finding FLAC matches... ({current}/{total})",
+  "queueFlacFindingProgress": "Recherche de fichiers FLAC... ({current}/{total})",
   "@queueFlacFindingProgress": {
     "description": "Snackbar while resolving remote matches for local FLAC redownloads",
     "placeholders": {
@@ -3272,7 +3272,7 @@
       }
     }
   },
-  "cueSplitArtist": "Artist: {artist}",
+  "cueSplitArtist": "Artiste : {artist}",
   "@cueSplitArtist": {
     "description": "Artist name in CUE split sheet",
     "placeholders": {
@@ -3281,7 +3281,7 @@
       }
     }
   },
-  "cueSplitTrackCount": "{count} tracks",
+  "cueSplitTrackCount": "{count} titres",
   "@cueSplitTrackCount": {
     "description": "Number of tracks in CUE sheet",
     "placeholders": {
@@ -3290,11 +3290,11 @@
       }
     }
   },
-  "cueSplitConfirmTitle": "Split CUE Album",
+  "cueSplitConfirmTitle": "Album CUE fractionné",
   "@cueSplitConfirmTitle": {
     "description": "CUE split confirmation dialog title"
   },
-  "cueSplitConfirmMessage": "Split \"{album}\" into {count} individual FLAC files?\n\nFiles will be saved to the same directory.",
+  "cueSplitConfirmMessage": "Diviser « {album} » en {count} fichiers FLAC individuels ?\n\nLes fichiers seront enregistrés dans le même répertoire.",
   "@cueSplitConfirmMessage": {
     "description": "CUE split confirmation dialog message",
     "placeholders": {
@@ -3306,7 +3306,7 @@
       }
     }
   },
-  "cueSplitSplitting": "Splitting CUE sheet... ({current}/{total})",
+  "cueSplitSplitting": "Fractionnement de la liste CUE... ({current}/{total})",
   "@cueSplitSplitting": {
     "description": "Snackbar while splitting CUE",
     "placeholders": {
@@ -3318,7 +3318,7 @@
       }
     }
   },
-  "cueSplitSuccess": "Split into {count} tracks successfully",
+  "cueSplitSuccess": "Le fichier a été divisé en {count} pistes avec succès",
   "@cueSplitSuccess": {
     "description": "Snackbar after successful CUE split",
     "placeholders": {
@@ -3327,23 +3327,23 @@
       }
     }
   },
-  "cueSplitFailed": "CUE split failed",
+  "cueSplitFailed": "Échec de la division CUE",
   "@cueSplitFailed": {
     "description": "Snackbar when CUE split fails"
   },
-  "cueSplitNoAudioFile": "Audio file not found for this CUE sheet",
+  "cueSplitNoAudioFile": "Fichier audio introuvable pour cette liste CUE",
   "@cueSplitNoAudioFile": {
     "description": "Error when CUE audio file is missing"
   },
-  "cueSplitButton": "Split into Tracks",
+  "cueSplitButton": "Diviser en pistes",
   "@cueSplitButton": {
     "description": "Button text to start CUE splitting"
   },
-  "actionCreate": "Create",
+  "actionCreate": "Créer",
   "@actionCreate": {
     "description": "Generic action button - create"
   },
-  "collectionFoldersTitle": "My folders",
+  "collectionFoldersTitle": "Mes dossiers",
   "@collectionFoldersTitle": {
     "description": "Library section title for custom folders"
   },
@@ -3778,7 +3778,7 @@
   "@settingsDonate": {
     "description": "Settings menu item - donate page"
   },
-  "settingsDonateSubtitle": "Buy the developer a coffee",
+  "settingsDonateSubtitle": "Offrez un café au développeur",
   "@settingsDonateSubtitle": {
     "description": "Subtitle for donate menu item"
   },
@@ -3786,7 +3786,7 @@
   "@tooltipLoveAll": {
     "description": "Tooltip for the Love All button on album/playlist screens"
   },
-  "tooltipAddToPlaylist": "Add to Playlist",
+  "tooltipAddToPlaylist": "Ajouter à la playlist",
   "@tooltipAddToPlaylist": {
     "description": "Tooltip for the Add to Playlist button"
   },
@@ -3821,15 +3821,15 @@
       }
     }
   },
-  "homeSkipAlreadyDownloaded": "Skip already downloaded songs",
+  "homeSkipAlreadyDownloaded": "Ignorer les morceaux déjà téléchargés",
   "@homeSkipAlreadyDownloaded": {
     "description": "Checkbox label in import dialog to skip already-downloaded songs"
   },
-  "homeGoToAlbum": "Go to Album",
+  "homeGoToAlbum": "Aller à l'album",
   "@homeGoToAlbum": {
     "description": "Context menu item to navigate to the album page"
   },
-  "homeAlbumInfoUnavailable": "Album info not available",
+  "homeAlbumInfoUnavailable": "Informations sur l'album non disponibles",
   "@homeAlbumInfoUnavailable": {
     "description": "Snackbar when album info cannot be loaded"
   },
@@ -3841,11 +3841,11 @@
   "@snackbarMetadataSaved": {
     "description": "Snackbar after successfully saving track metadata"
   },
-  "snackbarFailedToEmbedLyrics": "Failed to embed lyrics",
+  "snackbarFailedToEmbedLyrics": "Impossible d'intégrer les paroles",
   "@snackbarFailedToEmbedLyrics": {
     "description": "Snackbar when lyrics embedding fails"
   },
-  "snackbarFailedToWriteStorage": "Failed to write back to storage",
+  "snackbarFailedToWriteStorage": "Échec de l'écriture sur le support de stockage",
   "@snackbarFailedToWriteStorage": {
     "description": "Snackbar when writing metadata back to file fails"
   },
@@ -3906,11 +3906,11 @@
   "@downloadArtistNameFilters": {
     "description": "Setting title for artist folder filter options"
   },
-  "downloadCreatePlaylistSourceFolder": "Playlist Source Folder",
+  "downloadCreatePlaylistSourceFolder": "Dossier source de la playlist",
   "@downloadCreatePlaylistSourceFolder": {
     "description": "Setting to create a subfolder per playlist source"
   },
-  "downloadCreatePlaylistSourceFolderEnabled": "A subfolder is created for each playlist",
+  "downloadCreatePlaylistSourceFolderEnabled": "Un sous-dossier est créé pour chaque playlist",
   "@downloadCreatePlaylistSourceFolderEnabled": {
     "description": "Subtitle when playlist folder is enabled"
   },
@@ -3918,7 +3918,7 @@
   "@downloadCreatePlaylistSourceFolderDisabled": {
     "description": "Subtitle when playlist folder is disabled"
   },
-  "downloadCreatePlaylistSourceFolderRedundant": "Handled by folder organization setting",
+  "downloadCreatePlaylistSourceFolderRedundant": "Géré par les paramètres d'organisation des dossiers",
   "@downloadCreatePlaylistSourceFolderRedundant": {
     "description": "Subtitle when folder organization is already set to playlist"
   },
@@ -3926,55 +3926,55 @@
   "@downloadSongLinkRegion": {
     "description": "Setting for SongLink region used during fallback resolution"
   },
-  "downloadNetworkCompatibilityMode": "Network Compatibility Mode",
+  "downloadNetworkCompatibilityMode": "Mode de compatibilité réseau",
   "@downloadNetworkCompatibilityMode": {
     "description": "Setting for legacy TLS/network handling"
   },
-  "downloadNetworkCompatibilityModeEnabled": "Using legacy TLS settings for older networks",
+  "downloadNetworkCompatibilityModeEnabled": "Utilisation des paramètres TLS hérités pour les réseaux plus anciens",
   "@downloadNetworkCompatibilityModeEnabled": {
     "description": "Subtitle when network compatibility mode is on"
   },
-  "downloadNetworkCompatibilityModeDisabled": "Using standard network settings",
+  "downloadNetworkCompatibilityModeDisabled": "Utilisation des paramètres réseau par défaut",
   "@downloadNetworkCompatibilityModeDisabled": {
     "description": "Subtitle when network compatibility mode is off"
   },
-  "downloadSelectServiceToEnable": "Select Tidal or Qobuz to enable this option",
+  "downloadSelectServiceToEnable": "Sélectionnez Tidal ou Qobuz pour activer cette option",
   "@downloadSelectServiceToEnable": {
     "description": "Subtitle when quality picker is disabled due to extension service"
   },
-  "downloadSelectTidalQobuz": "Select Tidal or Qobuz to choose audio quality",
+  "downloadSelectTidalQobuz": "Sélectionnez Tidal ou Qobuz pour choisir la qualité audio",
   "@downloadSelectTidalQobuz": {
     "description": "Info shown when a non-built-in service is selected"
   },
-  "downloadEmbedLyricsDisabled": "Enable metadata embedding first",
+  "downloadEmbedLyricsDisabled": "Activez d'abord l'intégration des métadonnées",
   "@downloadEmbedLyricsDisabled": {
     "description": "Subtitle when lyrics embedding is blocked by metadata toggle"
   },
-  "downloadNeteaseIncludeTranslation": "Netease: Include Translation",
+  "downloadNeteaseIncludeTranslation": "Netease : inclure la traduction",
   "@downloadNeteaseIncludeTranslation": {
     "description": "Setting to include translated lyrics from Netease"
   },
-  "downloadNeteaseIncludeTranslationEnabled": "Chinese translation lines included",
+  "downloadNeteaseIncludeTranslationEnabled": "Lignes de traduction en chinois incluses",
   "@downloadNeteaseIncludeTranslationEnabled": {
     "description": "Subtitle when Netease translation is on"
   },
-  "downloadNeteaseIncludeTranslationDisabled": "Original lyrics only",
+  "downloadNeteaseIncludeTranslationDisabled": "Paroles originales uniquement",
   "@downloadNeteaseIncludeTranslationDisabled": {
     "description": "Subtitle when Netease translation is off"
   },
-  "downloadNeteaseIncludeRomanization": "Netease: Include Romanization",
+  "downloadNeteaseIncludeRomanization": "Netease : inclure la romanisation",
   "@downloadNeteaseIncludeRomanization": {
     "description": "Setting to include romanized lyrics from Netease"
   },
-  "downloadNeteaseIncludeRomanizationEnabled": "Romanization lines included",
+  "downloadNeteaseIncludeRomanizationEnabled": "Lignes de romanisation incluses",
   "@downloadNeteaseIncludeRomanizationEnabled": {
     "description": "Subtitle when Netease romanization is on"
   },
-  "downloadNeteaseIncludeRomanizationDisabled": "No romanization",
+  "downloadNeteaseIncludeRomanizationDisabled": "Pas de romanisation",
   "@downloadNeteaseIncludeRomanizationDisabled": {
     "description": "Subtitle when Netease romanization is off"
   },
-  "downloadAppleQqMultiPerson": "Apple / QQ: Multi-Person Lyrics",
+  "downloadAppleQqMultiPerson": "Apple / QQ : Paroles pour plusieurs personnes",
   "@downloadAppleQqMultiPerson": {
     "description": "Setting for word-by-word multi-person lyrics from Apple Music and QQ Music"
   },
@@ -3982,43 +3982,43 @@
   "@downloadAppleQqMultiPersonEnabled": {
     "description": "Subtitle when multi-person lyrics is on"
   },
-  "downloadAppleQqMultiPersonDisabled": "Standard lyrics without speaker labels",
+  "downloadAppleQqMultiPersonDisabled": "Paroles standard sans indication du haut-parleur",
   "@downloadAppleQqMultiPersonDisabled": {
     "description": "Subtitle when multi-person lyrics is off"
   },
-  "downloadAppleElrcWordSync": "Apple Music eLRC Word Sync",
+  "downloadAppleElrcWordSync": "Synchronisation des paroles Apple Music eLRC",
   "@downloadAppleElrcWordSync": {
     "description": "Setting for preserving Apple Music word-by-word eLRC timestamps"
   },
-  "downloadAppleElrcWordSyncEnabled": "Raw word-by-word timestamps preserved",
+  "downloadAppleElrcWordSyncEnabled": "Conservation des horodatages bruts mot à mot",
   "@downloadAppleElrcWordSyncEnabled": {
     "description": "Subtitle when Apple Music eLRC word sync is enabled"
   },
-  "downloadAppleElrcWordSyncDisabled": "Safer line-by-line Apple Music lyrics",
+  "downloadAppleElrcWordSyncDisabled": "Paroles d'Apple Music, ligne par ligne, en toute sécurité",
   "@downloadAppleElrcWordSyncDisabled": {
     "description": "Subtitle when Apple Music eLRC word sync is disabled"
   },
-  "downloadMusixmatchLanguage": "Musixmatch Language",
+  "downloadMusixmatchLanguage": "Langue Musixmatch",
   "@downloadMusixmatchLanguage": {
     "description": "Setting for Musixmatch lyrics translation language"
   },
-  "downloadMusixmatchLanguageAuto": "Auto (original language)",
+  "downloadMusixmatchLanguageAuto": "Auto (langue d'origine)",
   "@downloadMusixmatchLanguageAuto": {
     "description": "Subtitle when no language is set"
   },
-  "downloadFilterContributing": "Filter Contributing Artists",
+  "downloadFilterContributing": "Filtrer les artistes participants",
   "@downloadFilterContributing": {
     "description": "Setting to strip contributing artists from Album Artist folder name"
   },
-  "downloadFilterContributingEnabled": "Contributing artists removed from Album Artist folder name",
+  "downloadFilterContributingEnabled": "Les artistes ayant contribué à l'album ont été supprimés du nom du dossier « Artiste de l'album »",
   "@downloadFilterContributingEnabled": {
     "description": "Subtitle when contributing artist filter is on"
   },
-  "downloadFilterContributingDisabled": "Full Album Artist string used",
+  "downloadFilterContributingDisabled": "Chaîne « Artiste » de l'album complet utilisée",
   "@downloadFilterContributingDisabled": {
     "description": "Subtitle when contributing artist filter is off"
   },
-  "downloadProvidersNoneEnabled": "No providers enabled",
+  "downloadProvidersNoneEnabled": "Aucun fournisseur n'est activé",
   "@downloadProvidersNoneEnabled": {
     "description": "Shown when no lyrics providers are active"
   },
@@ -4038,11 +4038,11 @@
   "@downloadMusixmatchAuto": {
     "description": "Button to clear Musixmatch language (use auto)"
   },
-  "downloadNetworkAnySubtitle": "Use WiFi or mobile data",
+  "downloadNetworkAnySubtitle": "Utilisez le Wi-Fi ou les données mobiles",
   "@downloadNetworkAnySubtitle": {
     "description": "Subtitle for any-network option in picker"
   },
-  "downloadNetworkWifiOnlySubtitle": "Downloads pause when on mobile data",
+  "downloadNetworkWifiOnlySubtitle": "Les téléchargements sont mis en pause lors de l'utilisation des données mobiles",
   "@downloadNetworkWifiOnlySubtitle": {
     "description": "Subtitle for WiFi-only option in picker"
   },
@@ -4050,11 +4050,11 @@
   "@downloadSongLinkRegionDesc": {
     "description": "Description in SongLink region picker"
   },
-  "snackbarUnsupportedAudioFormat": "Unsupported audio format",
+  "snackbarUnsupportedAudioFormat": "Format audio non pris en charge",
   "@snackbarUnsupportedAudioFormat": {
     "description": "Snackbar when the audio format is not supported for the requested operation"
   },
-  "cacheRefresh": "Refresh",
+  "cacheRefresh": "Actualiser",
   "@cacheRefresh": {
     "description": "Tooltip for refresh button on cache management page"
   },
@@ -4079,7 +4079,7 @@
       }
     }
   },
-  "bulkDownloadSelectPlaylists": "Select playlists to download",
+  "bulkDownloadSelectPlaylists": "Sélectionnez les playlists à télécharger",
   "@bulkDownloadSelectPlaylists": {
     "description": "Button label when no playlists are selected for download"
   },
@@ -4096,23 +4096,23 @@
       }
     }
   },
-  "editMetadataAutoFill": "Auto-fill from online",
+  "editMetadataAutoFill": "Remplissage automatique en ligne",
   "@editMetadataAutoFill": {
     "description": "Section title for selective online metadata auto-fill in the edit metadata sheet"
   },
-  "editMetadataAutoFillDesc": "Select fields to fill automatically from online metadata",
+  "editMetadataAutoFillDesc": "Sélectionnez les champs à remplir automatiquement à partir des métadonnées en ligne",
   "@editMetadataAutoFillDesc": {
     "description": "Description for the auto-fill section"
   },
-  "editMetadataAutoFillFetch": "Fetch & Fill",
+  "editMetadataAutoFillFetch": "Récupérer & remplir",
   "@editMetadataAutoFillFetch": {
     "description": "Button label to fetch online metadata and fill selected fields"
   },
-  "editMetadataAutoFillSearching": "Searching online...",
+  "editMetadataAutoFillSearching": "Recherche en ligne...",
   "@editMetadataAutoFillSearching": {
     "description": "Snackbar shown while searching for online metadata"
   },
-  "editMetadataAutoFillNoResults": "No matching metadata found online",
+  "editMetadataAutoFillNoResults": "Aucune métadonnée correspondante n'a été trouvée en ligne",
   "@editMetadataAutoFillNoResults": {
     "description": "Snackbar when online metadata search returns no results"
   },
@@ -4125,15 +4125,15 @@
       }
     }
   },
-  "editMetadataAutoFillNoneSelected": "Select at least one field to auto-fill",
+  "editMetadataAutoFillNoneSelected": "Sélectionnez au moins un champ pour le remplir automatiquement",
   "@editMetadataAutoFillNoneSelected": {
     "description": "Snackbar when user taps Fetch without selecting any fields"
   },
-  "editMetadataFieldTitle": "Title",
+  "editMetadataFieldTitle": "Titre",
   "@editMetadataFieldTitle": {
     "description": "Chip label for title field in auto-fill selector"
   },
-  "editMetadataFieldArtist": "Artist",
+  "editMetadataFieldArtist": "Artiste",
   "@editMetadataFieldArtist": {
     "description": "Chip label for artist field in auto-fill selector"
   },
@@ -4141,7 +4141,7 @@
   "@editMetadataFieldAlbum": {
     "description": "Chip label for album field in auto-fill selector"
   },
-  "editMetadataFieldAlbumArtist": "Album Artist",
+  "editMetadataFieldAlbumArtist": "Artiste de l'album",
   "@editMetadataFieldAlbumArtist": {
     "description": "Chip label for album artist field in auto-fill selector"
   },
@@ -4149,11 +4149,11 @@
   "@editMetadataFieldDate": {
     "description": "Chip label for date field in auto-fill selector"
   },
-  "editMetadataFieldTrackNum": "Titre #",
+  "editMetadataFieldTrackNum": "Piste n°",
   "@editMetadataFieldTrackNum": {
     "description": "Chip label for track number field in auto-fill selector"
   },
-  "editMetadataFieldDiscNum": "Disc #",
+  "editMetadataFieldDiscNum": "Disque n°",
   "@editMetadataFieldDiscNum": {
     "description": "Chip label for disc number field in auto-fill selector"
   },
@@ -4169,7 +4169,7 @@
   "@editMetadataFieldLabel": {
     "description": "Chip label for label field in auto-fill selector"
   },
-  "editMetadataFieldCopyright": "Copyright",
+  "editMetadataFieldCopyright": "Droits d'auteur",
   "@editMetadataFieldCopyright": {
     "description": "Chip label for copyright field in auto-fill selector"
   },
@@ -4177,11 +4177,11 @@
   "@editMetadataFieldCover": {
     "description": "Chip label for cover art field in auto-fill selector"
   },
-  "editMetadataSelectAll": "All",
+  "editMetadataSelectAll": "Tout",
   "@editMetadataSelectAll": {
     "description": "Button to select all fields for auto-fill"
   },
-  "editMetadataSelectEmpty": "Empty only",
+  "editMetadataSelectEmpty": "Vide uniquement",
   "@editMetadataSelectEmpty": {
     "description": "Button to select only fields that are currently empty"
   },
@@ -4198,7 +4198,7 @@
   "@queueDownloadedHeader": {
     "description": "Header label for downloaded items section in library"
   },
-  "queueFilteringIndicator": "Filtering...",
+  "queueFilteringIndicator": "Filtrage...",
   "@queueFilteringIndicator": {
     "description": "Shown while filter results are being computed"
   },
@@ -4220,7 +4220,7 @@
       }
     }
   },
-  "queueEmptyAlbums": "No album downloads",
+  "queueEmptyAlbums": "Aucun album téléchargé",
   "@queueEmptyAlbums": {
     "description": "Empty state title when no album downloads exist"
   },
@@ -4256,7 +4256,7 @@
   "@selectionSelectPlaylistsToDelete": {
     "description": "Hint shown when no playlists are selected for deletion"
   },
-  "audioAnalysisTitle": "Audio Quality Analysis",
+  "audioAnalysisTitle": "Analyse de la qualité audio",
   "@audioAnalysisTitle": {
     "description": "Title for audio analysis section"
   },
@@ -4276,7 +4276,7 @@
   "@audioAnalysisCodec": {
     "description": "Audio codec metric label"
   },
-  "audioAnalysisContainer": "Container",
+  "audioAnalysisContainer": "Conteneur",
   "@audioAnalysisContainer": {
     "description": "Audio container metric label"
   },
@@ -4284,7 +4284,7 @@
   "@audioAnalysisDecodedFormat": {
     "description": "Decoded sample format metric label"
   },
-  "audioAnalysisBitDepth": "Bit Depth",
+  "audioAnalysisBitDepth": "Nombre de bits",
   "@audioAnalysisBitDepth": {
     "description": "Bit depth metric label"
   },
@@ -4292,7 +4292,7 @@
   "@audioAnalysisChannels": {
     "description": "Channels metric label"
   },
-  "audioAnalysisDuration": "Duration",
+  "audioAnalysisDuration": "Durée",
   "@audioAnalysisDuration": {
     "description": "Duration metric label"
   },
@@ -4304,11 +4304,11 @@
   "@audioAnalysisFileSize": {
     "description": "File size metric label"
   },
-  "audioAnalysisDynamicRange": "Dynamic Range",
+  "audioAnalysisDynamicRange": "Plage dynamique",
   "@audioAnalysisDynamicRange": {
     "description": "Dynamic range metric label"
   },
-  "audioAnalysisPeak": "Peak",
+  "audioAnalysisPeak": "Pic",
   "@audioAnalysisPeak": {
     "description": "Peak amplitude metric label"
   },
@@ -4324,15 +4324,15 @@
   "@audioAnalysisTruePeak": {
     "description": "True peak metric label"
   },
-  "audioAnalysisClipping": "Clipping",
+  "audioAnalysisClipping": "Coupure",
   "@audioAnalysisClipping": {
     "description": "Clipping metric label"
   },
-  "audioAnalysisNoClipping": "No clipping",
+  "audioAnalysisNoClipping": "Pas de coupure",
   "@audioAnalysisNoClipping": {
     "description": "Displayed when no clipped samples were detected"
   },
-  "audioAnalysisSpectralCutoff": "Spectral Cutoff",
+  "audioAnalysisSpectralCutoff": "Limite spectrale",
   "@audioAnalysisSpectralCutoff": {
     "description": "Estimated spectral cutoff metric label"
   },
@@ -4344,15 +4344,15 @@
   "@audioAnalysisSamples": {
     "description": "Total samples metric label"
   },
-  "audioAnalysisRescan": "Re-analyze",
+  "audioAnalysisRescan": "Réanalyser",
   "@audioAnalysisRescan": {
     "description": "Tooltip/label for the button that re-runs the audio analysis, discarding cached results"
   },
-  "audioAnalysisRescanning": "Re-analyzing audio...",
+  "audioAnalysisRescanning": "Réanalyse du fichier audio...",
   "@audioAnalysisRescanning": {
     "description": "Loading text while audio is being re-analyzed after an explicit refresh"
   },
-  "extensionsSearchWith": "Search with {providerName}",
+  "extensionsSearchWith": "Rechercher avec {providerName}",
   "@extensionsSearchWith": {
     "description": "Extensions page - subtitle for built-in search provider option",
     "placeholders": {
