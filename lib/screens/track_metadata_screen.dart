@@ -382,6 +382,11 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
           : null;
       final resolvedDuration = readPositiveInt(metadata['duration']);
       final resolvedAlbum = metadata['album']?.toString();
+      final resolvedTitle = metadata['title']?.toString();
+      final resolvedArtist = metadata['artist']?.toString();
+      final resolvedAlbumArtist = metadata['album_artist']?.toString();
+      final resolvedDate = metadata['date']?.toString();
+      final resolvedGenre = metadata['genre']?.toString();
       final resolvedQuality = _displayQualityForValues(
         format: resolvedFormat ?? _storedAudioFormat,
         bitDepth: resolvedBitDepth ?? bitDepth,
@@ -390,10 +395,6 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
         storedQuality: _quality,
       );
 
-      final needsAlbum =
-          resolvedAlbum != null &&
-          resolvedAlbum.isNotEmpty &&
-          (albumName.isEmpty);
       final needsDuration =
           resolvedDuration != null &&
           resolvedDuration > 0 &&
@@ -408,6 +409,7 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
       final resolvedComposer = metadata['composer']?.toString();
       final resolvedLabel = metadata['label']?.toString();
       final resolvedCopyright = metadata['copyright']?.toString();
+      final resolvedISRC = metadata['isrc']?.toString();
       final needsTrackNumber =
           resolvedTrackNumber != null &&
           resolvedTrackNumber > 0 &&
@@ -428,14 +430,30 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
           resolvedComposer != null &&
           resolvedComposer.isNotEmpty &&
           (composer == null || composer!.isEmpty);
-      final needsLabel =
-          resolvedLabel != null &&
-          resolvedLabel.isNotEmpty &&
-          (label == null || label!.isEmpty);
-      final needsCopyright =
-          resolvedCopyright != null &&
-          resolvedCopyright.isNotEmpty &&
-          (copyright == null || copyright!.isEmpty);
+      // The file is the source of truth for edited tags: an edit writes the
+      // new value into the file, but the cached history item may still carry
+      // the old one. Prefer the file value whenever present so re-opening the
+      // screen reflects the latest saved tags instead of the stale model.
+      // (Empty file values never override the model, so nothing is hidden.)
+      bool present(String? v) => v != null && v.trim().isNotEmpty;
+      final fileHasTitle = present(resolvedTitle);
+      final fileHasArtist = present(resolvedArtist);
+      final fileHasAlbumArtist = present(resolvedAlbumArtist);
+      final fileHasAlbum = present(resolvedAlbum);
+      final fileHasDate = present(resolvedDate);
+      final fileHasGenre = present(resolvedGenre);
+      final fileHasComposer = present(resolvedComposer);
+      final fileHasCopyright = present(resolvedCopyright);
+      final fileHasISRC = present(resolvedISRC);
+      final fileHasLabel = present(resolvedLabel);
+      final fileHasTrackNumber =
+          resolvedTrackNumber != null && resolvedTrackNumber > 0;
+      final fileHasTotalTracks =
+          resolvedTotalTracks != null && resolvedTotalTracks > 0;
+      final fileHasDiscNumber =
+          resolvedDiscNumber != null && resolvedDiscNumber > 0;
+      final fileHasTotalDiscs =
+          resolvedTotalDiscs != null && resolvedTotalDiscs > 0;
 
       final shouldPersistResolvedAudioMetadata =
           !_isLocalItem &&
@@ -453,15 +471,21 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
 
       if ((resolvedBitDepth != null ||
               resolvedSampleRate != null ||
-              needsAlbum ||
+              fileHasTitle ||
+              fileHasArtist ||
+              fileHasAlbumArtist ||
+              fileHasAlbum ||
+              fileHasDate ||
+              fileHasGenre ||
               needsDuration ||
-              needsTrackNumber ||
-              needsTotalTracks ||
-              needsDiscNumber ||
-              needsTotalDiscs ||
-              needsComposer ||
-              needsLabel ||
-              needsCopyright ||
+              fileHasTrackNumber ||
+              fileHasTotalTracks ||
+              fileHasDiscNumber ||
+              fileHasTotalDiscs ||
+              fileHasComposer ||
+              fileHasISRC ||
+              fileHasLabel ||
+              fileHasCopyright ||
               isPlaceholderQualityLabel(_quality)) &&
           mounted) {
         setState(() {
@@ -471,15 +495,21 @@ class _TrackMetadataScreenState extends ConsumerState<TrackMetadataScreen> {
             if (resolvedBitDepth != null) 'bit_depth': resolvedBitDepth,
             // ignore: use_null_aware_elements
             if (resolvedSampleRate != null) 'sample_rate': resolvedSampleRate,
-            if (needsAlbum) 'album': resolvedAlbum,
+            if (fileHasTitle) 'title': resolvedTitle,
+            if (fileHasArtist) 'artist': resolvedArtist,
+            if (fileHasAlbumArtist) 'album_artist': resolvedAlbumArtist,
+            if (fileHasAlbum) 'album': resolvedAlbum,
+            if (fileHasDate) 'date': resolvedDate,
+            if (fileHasGenre) 'genre': resolvedGenre,
             if (needsDuration) 'duration': resolvedDuration,
-            if (needsTrackNumber) 'track_number': resolvedTrackNumber,
-            if (needsTotalTracks) 'total_tracks': resolvedTotalTracks,
-            if (needsDiscNumber) 'disc_number': resolvedDiscNumber,
-            if (needsTotalDiscs) 'total_discs': resolvedTotalDiscs,
-            if (needsComposer) 'composer': resolvedComposer,
-            if (needsLabel) 'label': resolvedLabel,
-            if (needsCopyright) 'copyright': resolvedCopyright,
+            if (fileHasTrackNumber) 'track_number': resolvedTrackNumber,
+            if (fileHasTotalTracks) 'total_tracks': resolvedTotalTracks,
+            if (fileHasDiscNumber) 'disc_number': resolvedDiscNumber,
+            if (fileHasTotalDiscs) 'total_discs': resolvedTotalDiscs,
+            if (fileHasComposer) 'composer': resolvedComposer,
+            if (fileHasISRC) 'isrc': resolvedISRC,
+            if (fileHasLabel) 'label': resolvedLabel,
+            if (fileHasCopyright) 'copyright': resolvedCopyright,
           };
         });
       }

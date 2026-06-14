@@ -793,6 +793,22 @@ class PlatformBridge {
     return _decodeRequiredMapResult(result, 'editFileMetadata');
   }
 
+  /// Writes ISRC and label into an M4A/MP4 file as iTunes freeform atoms.
+  /// FFmpeg's MP4 muxer drops these keys, so they must be written natively
+  /// after the FFmpeg metadata pass. [filePath] must be a local file path.
+  /// Only the keys present in [fields] are touched; an empty value clears it.
+  static Future<Map<String, dynamic>> writeM4AFreeformTags(
+    String filePath,
+    Map<String, String> fields,
+  ) async {
+    final metadataJSON = jsonEncode(fields);
+    final result = await _channel.invokeMethod('writeM4AFreeformTags', {
+      'file_path': filePath,
+      'metadata_json': metadataJSON,
+    });
+    return _decodeRequiredMapResult(result, 'writeM4AFreeformTags');
+  }
+
   /// Rewrites ARTIST/ALBUMARTIST Vorbis comments as multiple split entries
   /// using the native Go FLAC writer, fixing FFmpeg's tag deduplication.
   static Future<Map<String, dynamic>> rewriteSplitArtistTags(

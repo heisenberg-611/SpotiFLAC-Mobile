@@ -2014,6 +2014,13 @@ class FFmpegService {
           await tempFile.copy(m4aPath);
           await tempFile.delete();
 
+          // FFmpeg's MP4 muxer ignores ISRC and label, so write them natively
+          // as iTunes freeform atoms. Only fields the caller supplied are
+          // touched (an empty value clears the tag).
+          if (metadata != null) {
+            await _writeM4AFreeformTags(m4aPath, metadata);
+          }
+
           _log.d('M4A metadata embedded successfully');
           return m4aPath;
         } else {
@@ -2802,6 +2809,34 @@ class FFmpegService {
 
     for (final artist in splitArtistTagValues(value)) {
       entries.add(MapEntry(key, artist));
+    }
+  }
+
+  /// Writes ISRC and label into an M4A/MP4 file natively (iTunes freeform
+  /// atoms), since FFmpeg's MP4 muxer drops these keys. Only keys present in
+  /// [metadata] are written; an empty value clears the corresponding tag.
+  static Future<void> _writeM4AFreeformTags(
+    String m4aPath,
+    Map<String, String> metadata,
+  ) async {
+    final fields = <String, String>{};
+    for (final entry in metadata.entries) {
+      final key = entry.key.toUpperCase().replaceAll(RegExp(r'[^A-Z0-9]'), '');
+      switch (key) {
+        case 'ISRC':
+          fields['isrc'] = entry.value;
+          break;
+        case 'LABEL':
+        case 'ORGANIZATION':
+          fields['label'] = entry.value;
+          break;
+      }
+    }
+    if (fields.isEmpty) return;
+    try {
+      await PlatformBridge.writeM4AFreeformTags(m4aPath, fields);
+    } catch (e) {
+      _log.w('writeM4AFreeformTags failed for $m4aPath: $e');
     }
   }
 

@@ -1432,6 +1432,51 @@ func EditM4AReplayGain(filePath string, fields map[string]string) error {
 		return nil
 	}
 
+	remove := map[string]struct{}{
+		"REPLAYGAIN_TRACK_GAIN": {},
+		"REPLAYGAIN_TRACK_PEAK": {},
+		"REPLAYGAIN_ALBUM_GAIN": {},
+		"REPLAYGAIN_ALBUM_PEAK": {},
+		"ITUNNORM":              {},
+	}
+
+	order := []string{
+		"replaygain_track_gain",
+		"replaygain_track_peak",
+		"replaygain_album_gain",
+		"replaygain_album_peak",
+		"iTunNORM",
+	}
+	tags := make([]m4aFreeformTag, 0, len(order))
+	for _, key := range order {
+		value := strings.TrimSpace(replayGainFields[key])
+		if value == "" {
+			continue
+		}
+		name := key
+		if key != "iTunNORM" {
+			name = strings.ToLower(key)
+		}
+		tags = append(tags, m4aFreeformTag{name: name, value: value})
+	}
+
+	return writeM4AFreeformTags(filePath, remove, tags)
+}
+
+type m4aFreeformTag struct {
+	name  string
+	value string
+}
+
+// writeM4AFreeformTags rewrites the ilst atom in place: it drops every existing
+// freeform ("----") atom whose uppercased name is in `remove`, then appends the
+// supplied tags (empty values are skipped, which effectively clears the field).
+// Atom sizes are fixed up along the ilst -> meta -> udta -> moov chain.
+//
+// FFmpeg's MP4 muxer only writes a fixed set of recognized keys to the ilst, so
+// fields like ISRC and LABEL are silently dropped when written via -metadata.
+// Writing them as iTunes freeform atoms natively is the only way they persist.
+func writeM4AFreeformTags(filePath string, remove map[string]struct{}, tags []m4aFreeformTag) error {
 	f, err := os.Open(filePath)
 	if err != nil {
 		return err
@@ -1456,13 +1501,6 @@ func EditM4AReplayGain(filePath string, fields map[string]string) error {
 	bodyStart := path.ilst.offset + path.ilst.headerSize
 	bodyEnd := path.ilst.offset + path.ilst.size
 	newBody := make([]byte, 0, int(path.ilst.size))
-	targets := map[string]struct{}{
-		"REPLAYGAIN_TRACK_GAIN": {},
-		"REPLAYGAIN_TRACK_PEAK": {},
-		"REPLAYGAIN_ALBUM_GAIN": {},
-		"REPLAYGAIN_ALBUM_PEAK": {},
-		"ITUNNORM":              {},
-	}
 
 	for pos := bodyStart; pos+8 <= bodyEnd; {
 		header, readErr := readAtomHeaderAt(f, pos, info.Size())
@@ -1480,7 +1518,7 @@ func EditM4AReplayGain(filePath string, fields map[string]string) error {
 		if header.typ == "----" {
 			name, _, freeformErr := readM4AFreeformValue(f, header, info.Size())
 			if freeformErr == nil {
-				if _, ok := targets[strings.ToUpper(strings.TrimSpace(name))]; ok {
+				if _, ok := remove[strings.ToUpper(strings.TrimSpace(name))]; ok {
 					keep = false
 				}
 			}
@@ -1492,23 +1530,11 @@ func EditM4AReplayGain(filePath string, fields map[string]string) error {
 		pos += header.size
 	}
 
-	order := []string{
-		"replaygain_track_gain",
-		"replaygain_track_peak",
-		"replaygain_album_gain",
-		"replaygain_album_peak",
-		"iTunNORM",
-	}
-	for _, key := range order {
-		value := strings.TrimSpace(replayGainFields[key])
-		if value == "" {
+	for _, tag := range tags {
+		if strings.TrimSpace(tag.value) == "" {
 			continue
 		}
-		name := key
-		if key != "iTunNORM" {
-			name = strings.ToLower(key)
-		}
-		newBody = append(newBody, buildM4AFreeformAtom(name, value)...)
+		newBody = append(newBody, buildM4AFreeformAtom(tag.name, tag.value)...)
 	}
 
 	newIlst := buildM4AAtom("ilst", newBody)
@@ -1533,6 +1559,32 @@ func EditM4AReplayGain(filePath string, fields map[string]string) error {
 	}
 
 	return os.WriteFile(filePath, updated, 0o644)
+}
+
+// EditM4AFreeformText writes ISRC and label tags into an M4A/MP4 file as iTunes
+// freeform atoms. These keys are not part of FFmpeg's MP4 metadata key set, so
+// they must be written natively for the values to actually persist. An empty
+// value clears the corresponding tag. Other (recognized) tags are left intact.
+func EditM4AFreeformText(filePath string, fields map[string]string) error {
+	_, hasISRC := fields["isrc"]
+	_, hasLabel := fields["label"]
+	if !hasISRC && !hasLabel {
+		return nil
+	}
+
+	remove := map[string]struct{}{}
+	tags := make([]m4aFreeformTag, 0, 2)
+	if hasISRC {
+		remove["ISRC"] = struct{}{}
+		tags = append(tags, m4aFreeformTag{name: "ISRC", value: strings.TrimSpace(fields["isrc"])})
+	}
+	if hasLabel {
+		remove["LABEL"] = struct{}{}
+		remove["ORGANIZATION"] = struct{}{}
+		tags = append(tags, m4aFreeformTag{name: "LABEL", value: strings.TrimSpace(fields["label"])})
+	}
+
+	return writeM4AFreeformTags(filePath, remove, tags)
 }
 
 func extractLyricsFromSidecarLRC(filePath string) (string, error) {

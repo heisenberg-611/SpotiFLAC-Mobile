@@ -2643,6 +2643,19 @@ class MainActivity: FlutterFragmentActivity() {
                             }
                             result.success(response)
                         }
+                        "writeM4AFreeformTags" -> {
+                            val filePath = call.argument<String>("file_path") ?: ""
+                            val metadataJson = call.argument<String>("metadata_json") ?: "{}"
+                            val response = withContext(Dispatchers.IO) {
+                                try {
+                                    Gobackend.writeM4AFreeformTags(filePath, metadataJson)
+                                } catch (e: Exception) {
+                                    android.util.Log.e("SpotiFLAC", "writeM4AFreeformTags failed: ${e.message}", e)
+                                    """{"error":"${e.message?.replace("\"", "'")}"}"""
+                                }
+                            }
+                            result.success(response)
+                        }
                         "writeTempToSaf" -> {
                             val tempPath = call.argument<String>("temp_path") ?: ""
                             val safUri = call.argument<String>("saf_uri") ?: ""

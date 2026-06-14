@@ -1510,6 +1510,25 @@ func ScanCueSheetForLibraryWithCoverCacheKey(cuePath, audioDir, virtualPathPrefi
 	return string(jsonBytes), nil
 }
 
+// WriteM4AFreeformTags writes ISRC and label into an M4A/MP4 file as iTunes
+// freeform atoms. FFmpeg's MP4 muxer ignores these keys, so they must be
+// written natively after the FFmpeg metadata pass for the values to persist.
+// Only keys present in the JSON are touched; an empty value clears the tag.
+func WriteM4AFreeformTags(filePath, metadataJSON string) (string, error) {
+	var fields map[string]string
+	if err := json.Unmarshal([]byte(metadataJSON), &fields); err != nil {
+		return "", fmt.Errorf("invalid metadata JSON: %w", err)
+	}
+
+	if err := EditM4AFreeformText(filePath, fields); err != nil {
+		return "", fmt.Errorf("failed to write M4A freeform tags: %w", err)
+	}
+
+	resp := map[string]any{"success": true, "method": "native_m4a_freeform"}
+	jsonBytes, _ := json.Marshal(resp)
+	return string(jsonBytes), nil
+}
+
 // EditFileMetadata writes audio file tags: FLAC via native Go library, MP3/Opus returns map for Dart/FFmpeg.
 func EditFileMetadata(filePath, metadataJSON string) (string, error) {
 	var fields map[string]string
