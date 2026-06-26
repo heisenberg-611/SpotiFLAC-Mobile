@@ -2893,6 +2893,118 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsDonateSubtitle => 'Buy the developer a coffee';
 
   @override
+  String get settingsBackup => 'Cadangkan & Pulihkan';
+
+  @override
+  String get settingsBackupSubtitle =>
+      'Pindahkan pustaka, riwayat, dan pengaturan ke perangkat baru';
+
+  @override
+  String get backupTitle => 'Cadangkan & Pulihkan';
+
+  @override
+  String get backupExportSectionTitle => 'Buat cadangan';
+
+  @override
+  String get backupExportSectionDescription =>
+      'Simpan pengaturan, riwayat unduhan, lagu disukai, wishlist, artis favorit, dan playlist ke dalam satu file yang bisa kamu simpan atau pindahkan ke ponsel lain.';
+
+  @override
+  String get backupExportButton => 'Buat file cadangan';
+
+  @override
+  String get backupImportSectionTitle => 'Pulihkan cadangan';
+
+  @override
+  String get backupImportSectionDescription =>
+      'Pilih file cadangan untuk memulihkan data. Ini akan menggantikan pengaturan, riwayat, dan pustaka di perangkat ini.';
+
+  @override
+  String get backupImportButton => 'Pilih file cadangan';
+
+  @override
+  String get backupCreating => 'Membuat cadangan...';
+
+  @override
+  String get backupCreated => 'Cadangan berhasil dibuat';
+
+  @override
+  String get backupCreateFailed => 'Gagal membuat cadangan';
+
+  @override
+  String get backupEmpty => 'Belum ada data untuk dicadangkan';
+
+  @override
+  String get backupRestoreConfirmTitle => 'Pulihkan cadangan ini?';
+
+  @override
+  String get backupRestoreConfirmMessage =>
+      'Ini akan menggantikan pengaturan, riwayat unduhan, lagu disukai, wishlist, dan playlist saat ini dengan isi cadangan. Tindakan ini tidak bisa dibatalkan.';
+
+  @override
+  String get backupRestoreConfirmButton => 'Pulihkan';
+
+  @override
+  String get backupRestoring => 'Memulihkan cadangan...';
+
+  @override
+  String get backupRestored => 'Cadangan berhasil dipulihkan';
+
+  @override
+  String get backupRestoreFailed => 'Gagal memulihkan cadangan';
+
+  @override
+  String get backupInvalidFile =>
+      'File ini bukan cadangan SpotiFLAC yang valid';
+
+  @override
+  String get backupRestoreRestartHint =>
+      'Mulai ulang aplikasi untuk memastikan semua perubahan diterapkan.';
+
+  @override
+  String get backupContentsTitle => 'Isi cadangan';
+
+  @override
+  String get backupContentsSettings => 'Pengaturan aplikasi';
+
+  @override
+  String backupContentsHistory(int count) {
+    return '$count item riwayat';
+  }
+
+  @override
+  String backupContentsLiked(int count) {
+    return '$count lagu disukai';
+  }
+
+  @override
+  String backupContentsWishlist(int count) {
+    return '$count lagu di wishlist';
+  }
+
+  @override
+  String backupContentsPlaylists(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count playlist',
+      one: '1 playlist',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String backupContentsArtists(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count artis favorit',
+      one: '1 artis favorit',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get tooltipLoveAll => 'Love All';
 
   @override

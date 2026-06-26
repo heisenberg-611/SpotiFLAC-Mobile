@@ -3689,6 +3689,69 @@
   "@settingsDonateSubtitle": {
     "description": "Subtitle for donate menu item"
   },
+  "settingsBackup": "Cadangkan & Pulihkan",
+  "settingsBackupSubtitle": "Pindahkan pustaka, riwayat, dan pengaturan ke perangkat baru",
+  "backupTitle": "Cadangkan & Pulihkan",
+  "backupExportSectionTitle": "Buat cadangan",
+  "backupExportSectionDescription": "Simpan pengaturan, riwayat unduhan, lagu disukai, wishlist, artis favorit, dan playlist ke dalam satu file yang bisa kamu simpan atau pindahkan ke ponsel lain.",
+  "backupExportButton": "Buat file cadangan",
+  "backupImportSectionTitle": "Pulihkan cadangan",
+  "backupImportSectionDescription": "Pilih file cadangan untuk memulihkan data. Ini akan menggantikan pengaturan, riwayat, dan pustaka di perangkat ini.",
+  "backupImportButton": "Pilih file cadangan",
+  "backupCreating": "Membuat cadangan...",
+  "backupCreated": "Cadangan berhasil dibuat",
+  "backupCreateFailed": "Gagal membuat cadangan",
+  "backupEmpty": "Belum ada data untuk dicadangkan",
+  "backupRestoreConfirmTitle": "Pulihkan cadangan ini?",
+  "backupRestoreConfirmMessage": "Ini akan menggantikan pengaturan, riwayat unduhan, lagu disukai, wishlist, dan playlist saat ini dengan isi cadangan. Tindakan ini tidak bisa dibatalkan.",
+  "backupRestoreConfirmButton": "Pulihkan",
+  "backupRestoring": "Memulihkan cadangan...",
+  "backupRestored": "Cadangan berhasil dipulihkan",
+  "backupRestoreFailed": "Gagal memulihkan cadangan",
+  "backupInvalidFile": "File ini bukan cadangan SpotiFLAC yang valid",
+  "backupRestoreRestartHint": "Mulai ulang aplikasi untuk memastikan semua perubahan diterapkan.",
+  "backupContentsTitle": "Isi cadangan",
+  "backupContentsSettings": "Pengaturan aplikasi",
+  "backupContentsHistory": "{count} item riwayat",
+  "@backupContentsHistory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backupContentsLiked": "{count} lagu disukai",
+  "@backupContentsLiked": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backupContentsWishlist": "{count} lagu di wishlist",
+  "@backupContentsWishlist": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backupContentsPlaylists": "{count, plural, =1{1 playlist} other{{count} playlist}}",
+  "@backupContentsPlaylists": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "backupContentsArtists": "{count, plural, =1{1 artis favorit} other{{count} artis favorit}}",
+  "@backupContentsArtists": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "tooltipLoveAll": "Love All",
   "@tooltipLoveAll": {
     "description": "Tooltip for the Love All button on album/playlist screens"

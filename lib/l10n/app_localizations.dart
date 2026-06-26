@@ -4993,6 +4993,174 @@ abstract class AppLocalizations {
   /// **'Buy the developer a coffee'**
   String get settingsDonateSubtitle;
 
+  /// Settings menu item - backup and restore page
+  ///
+  /// In en, this message translates to:
+  /// **'Backup & Restore'**
+  String get settingsBackup;
+
+  /// Subtitle for backup and restore settings item
+  ///
+  /// In en, this message translates to:
+  /// **'Move your library, history and settings to a new device'**
+  String get settingsBackupSubtitle;
+
+  /// App bar title for the backup and restore page
+  ///
+  /// In en, this message translates to:
+  /// **'Backup & Restore'**
+  String get backupTitle;
+
+  /// Section title for the export/backup card
+  ///
+  /// In en, this message translates to:
+  /// **'Create backup'**
+  String get backupExportSectionTitle;
+
+  /// Description of what a backup contains
+  ///
+  /// In en, this message translates to:
+  /// **'Save your settings, download history, liked tracks, wishlist, favorite artists and playlists into a single file you can keep or move to another phone.'**
+  String get backupExportSectionDescription;
+
+  /// Button to create and share a backup file
+  ///
+  /// In en, this message translates to:
+  /// **'Create backup file'**
+  String get backupExportButton;
+
+  /// Section title for the import/restore card
+  ///
+  /// In en, this message translates to:
+  /// **'Restore backup'**
+  String get backupImportSectionTitle;
+
+  /// Description for the restore action
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a backup file to restore your data. This replaces the current settings, history and library on this device.'**
+  String get backupImportSectionDescription;
+
+  /// Button to pick a backup file to restore
+  ///
+  /// In en, this message translates to:
+  /// **'Choose backup file'**
+  String get backupImportButton;
+
+  /// Progress text while a backup is being created
+  ///
+  /// In en, this message translates to:
+  /// **'Creating backup...'**
+  String get backupCreating;
+
+  /// Snackbar after a backup file is created
+  ///
+  /// In en, this message translates to:
+  /// **'Backup created'**
+  String get backupCreated;
+
+  /// Snackbar when backup creation fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to create backup'**
+  String get backupCreateFailed;
+
+  /// Snackbar when there is no data to back up
+  ///
+  /// In en, this message translates to:
+  /// **'There is nothing to back up yet'**
+  String get backupEmpty;
+
+  /// Confirmation dialog title before restoring a backup
+  ///
+  /// In en, this message translates to:
+  /// **'Restore this backup?'**
+  String get backupRestoreConfirmTitle;
+
+  /// Confirmation dialog message before restoring a backup
+  ///
+  /// In en, this message translates to:
+  /// **'This will replace your current settings, download history, liked tracks, wishlist and playlists with the contents of the backup. This cannot be undone.'**
+  String get backupRestoreConfirmMessage;
+
+  /// Confirm button to proceed with restore
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get backupRestoreConfirmButton;
+
+  /// Progress text while restoring a backup
+  ///
+  /// In en, this message translates to:
+  /// **'Restoring backup...'**
+  String get backupRestoring;
+
+  /// Snackbar after a successful restore
+  ///
+  /// In en, this message translates to:
+  /// **'Backup restored successfully'**
+  String get backupRestored;
+
+  /// Snackbar when restore fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to restore backup'**
+  String get backupRestoreFailed;
+
+  /// Snackbar when the chosen file is not a valid backup
+  ///
+  /// In en, this message translates to:
+  /// **'This file is not a valid SpotiFLAC backup'**
+  String get backupInvalidFile;
+
+  /// Hint shown after restoring that an app restart is recommended
+  ///
+  /// In en, this message translates to:
+  /// **'Restart the app to make sure every change is applied.'**
+  String get backupRestoreRestartHint;
+
+  /// Header above the list summarizing what the backup contains
+  ///
+  /// In en, this message translates to:
+  /// **'Backup contents'**
+  String get backupContentsTitle;
+
+  /// Backup contents row label for settings
+  ///
+  /// In en, this message translates to:
+  /// **'App settings'**
+  String get backupContentsSettings;
+
+  /// Backup contents row for history count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} history {count, plural, =1{item} other{items}}'**
+  String backupContentsHistory(int count);
+
+  /// Backup contents row for liked tracks count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} liked {count, plural, =1{track} other{tracks}}'**
+  String backupContentsLiked(int count);
+
+  /// Backup contents row for wishlist tracks count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} wishlist {count, plural, =1{track} other{tracks}}'**
+  String backupContentsWishlist(int count);
+
+  /// Backup contents row for playlist count
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 playlist} other{{count} playlists}}'**
+  String backupContentsPlaylists(int count);
+
+  /// Backup contents row for favorite artists count
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 favorite artist} other{{count} favorite artists}}'**
+  String backupContentsArtists(int count);
+
   /// Tooltip for the Love All button on album/playlist screens
   ///
   /// In en, this message translates to:

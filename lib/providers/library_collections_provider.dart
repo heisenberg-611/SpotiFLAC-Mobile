@@ -953,6 +953,90 @@ class LibraryCollectionsNotifier extends Notifier<LibraryCollectionsState> {
     });
     _invalidatePlaylistPickerSummaries();
   }
+
+  /// Returns the full collections snapshot (wishlist, loved, playlists,
+  /// favorite artists) for a backup, ensuring data is loaded first.
+  Future<Map<String, dynamic>> exportCollections() async {
+    await _ensureLoaded();
+    return state.toJson();
+  }
+
+  /// Exports custom playlist cover images as base64, keyed by playlist id.
+  /// Each value contains the original file extension and the encoded bytes so a
+  /// restore on another device can recreate the cover files.
+  Future<Map<String, Map<String, String>>> exportPlaylistCovers() async {
+    await _ensureLoaded();
+    final covers = <String, Map<String, String>>{};
+    for (final playlist in state.playlists) {
+      final path = playlist.coverImagePath;
+      if (path == null || path.isEmpty) continue;
+      try {
+        final file = File(path);
+        if (!await file.exists()) continue;
+        final bytes = await file.readAsBytes();
+        if (bytes.isEmpty) continue;
+        covers[playlist.id] = {
+          'ext': p.extension(path).toLowerCase(),
+          'data': base64Encode(bytes),
+        };
+      } catch (_) {
+        // Skip unreadable cover; the rest of the backup still succeeds.
+      }
+    }
+    return covers;
+  }
+
+  /// Replaces all collections (wishlist, loved, playlists, favorite artists)
+  /// with the contents of a backup. [collectionsJson] uses the
+  /// [LibraryCollectionsState.toJson] shape; [coverImages] is the map produced
+  /// by [exportPlaylistCovers]. Cover images are rewritten into this device's
+  /// covers directory and their paths fixed up before persisting.
+  Future<void> restoreFromBackup(
+    Map<String, dynamic> collectionsJson, {
+    Map<String, dynamic>? coverImages,
+  }) async {
+    final normalized = Map<String, dynamic>.from(collectionsJson);
+    final coversDir = await _playlistCoversDir();
+
+    final playlistsRaw = normalized['playlists'];
+    if (playlistsRaw is List) {
+      final rewritten = <Map<String, dynamic>>[];
+      for (final entry in playlistsRaw.whereType<Map<Object?, Object?>>()) {
+        final playlist = Map<String, dynamic>.from(entry);
+        final id = playlist['id'] as String?;
+        String? newCoverPath;
+        final coverEntry = (id != null && coverImages != null)
+            ? coverImages[id]
+            : null;
+        if (id != null && coverEntry is Map) {
+          final data = coverEntry['data'] as String?;
+          final ext = (coverEntry['ext'] as String?) ?? '.jpg';
+          if (data != null && data.isNotEmpty) {
+            try {
+              final destPath = p.join(coversDir.path, '$id$ext');
+              await File(destPath).writeAsBytes(base64Decode(data));
+              newCoverPath = destPath;
+            } catch (_) {
+              newCoverPath = null;
+            }
+          }
+        }
+        // Always replace the backup's device-specific path: either with the
+        // freshly written local cover, or drop it so a stale path is not kept.
+        if (newCoverPath != null) {
+          playlist['coverImagePath'] = newCoverPath;
+        } else {
+          playlist.remove('coverImagePath');
+        }
+        rewritten.add(playlist);
+      }
+      normalized['playlists'] = rewritten;
+    }
+
+    await _db.replaceAllFromBackup(normalized);
+    await _load();
+    _invalidatePlaylistPickerSummaries();
+  }
 }
 
 final libraryCollectionsProvider =

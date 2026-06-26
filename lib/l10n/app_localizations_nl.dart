@@ -2886,6 +2886,135 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsDonateSubtitle => 'Buy the developer a coffee';
 
   @override
+  String get settingsBackup => 'Backup & Restore';
+
+  @override
+  String get settingsBackupSubtitle =>
+      'Move your library, history and settings to a new device';
+
+  @override
+  String get backupTitle => 'Backup & Restore';
+
+  @override
+  String get backupExportSectionTitle => 'Create backup';
+
+  @override
+  String get backupExportSectionDescription =>
+      'Save your settings, download history, liked tracks, wishlist, favorite artists and playlists into a single file you can keep or move to another phone.';
+
+  @override
+  String get backupExportButton => 'Create backup file';
+
+  @override
+  String get backupImportSectionTitle => 'Restore backup';
+
+  @override
+  String get backupImportSectionDescription =>
+      'Pick a backup file to restore your data. This replaces the current settings, history and library on this device.';
+
+  @override
+  String get backupImportButton => 'Choose backup file';
+
+  @override
+  String get backupCreating => 'Creating backup...';
+
+  @override
+  String get backupCreated => 'Backup created';
+
+  @override
+  String get backupCreateFailed => 'Failed to create backup';
+
+  @override
+  String get backupEmpty => 'There is nothing to back up yet';
+
+  @override
+  String get backupRestoreConfirmTitle => 'Restore this backup?';
+
+  @override
+  String get backupRestoreConfirmMessage =>
+      'This will replace your current settings, download history, liked tracks, wishlist and playlists with the contents of the backup. This cannot be undone.';
+
+  @override
+  String get backupRestoreConfirmButton => 'Restore';
+
+  @override
+  String get backupRestoring => 'Restoring backup...';
+
+  @override
+  String get backupRestored => 'Backup restored successfully';
+
+  @override
+  String get backupRestoreFailed => 'Failed to restore backup';
+
+  @override
+  String get backupInvalidFile => 'This file is not a valid SpotiFLAC backup';
+
+  @override
+  String get backupRestoreRestartHint =>
+      'Restart the app to make sure every change is applied.';
+
+  @override
+  String get backupContentsTitle => 'Backup contents';
+
+  @override
+  String get backupContentsSettings => 'App settings';
+
+  @override
+  String backupContentsHistory(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'items',
+      one: 'item',
+    );
+    return '$count history $_temp0';
+  }
+
+  @override
+  String backupContentsLiked(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'tracks',
+      one: 'track',
+    );
+    return '$count liked $_temp0';
+  }
+
+  @override
+  String backupContentsWishlist(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'tracks',
+      one: 'track',
+    );
+    return '$count wishlist $_temp0';
+  }
+
+  @override
+  String backupContentsPlaylists(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count playlists',
+      one: '1 playlist',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String backupContentsArtists(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count favorite artists',
+      one: '1 favorite artist',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get tooltipLoveAll => 'Love All';
 
   @override

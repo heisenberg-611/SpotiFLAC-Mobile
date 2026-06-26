@@ -194,6 +194,40 @@ class SettingsNotifier extends Notifier<AppSettings> {
     }
   }
 
+  /// Restores settings from a backup payload (the map produced by
+  /// [AppSettings.toJson]). Device-specific storage location fields
+  /// (download directory and SAF tree URI) are intentionally preserved from the
+  /// current device, because a SAF tree URI from another phone is not valid
+  /// here and would break downloads.
+  Future<void> restoreFromBackup(Map<String, dynamic> json) async {
+    final current = state;
+    AppSettings restored;
+    try {
+      restored = AppSettings.fromJson(Map<String, dynamic>.from(json));
+    } catch (e, stack) {
+      _log.e('Failed to parse settings from backup: $e', e, stack);
+      rethrow;
+    }
+
+    state = restored.copyWith(
+      // Always keep extension providers enabled (matches _loadSettings).
+      useExtensionProviders: true,
+      // Preserve this device's storage location; the backup's values point at
+      // the original device and would not resolve here.
+      downloadDirectory: current.downloadDirectory,
+      downloadDirectoryBookmark: current.downloadDirectoryBookmark,
+      storageMode: current.storageMode,
+      downloadTreeUri: current.downloadTreeUri,
+    );
+
+    await _saveSettings();
+
+    LogBuffer.loggingEnabled = state.enableLogging;
+    _syncLyricsSettingsToBackend();
+    _syncNetworkCompatibilitySettingsToBackend();
+    _syncExtensionFallbackSettingsToBackend();
+  }
+
   Future<void> _normalizeIosDownloadDirectoryIfNeeded() async {
     if (!Platform.isIOS) return;
 

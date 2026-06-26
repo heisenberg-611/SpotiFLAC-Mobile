@@ -12,6 +12,7 @@ import 'package:spotiflac_android/screens/settings/library_settings_page.dart';
 import 'package:spotiflac_android/screens/settings/app_settings_page.dart';
 import 'package:spotiflac_android/screens/settings/about_page.dart';
 import 'package:spotiflac_android/screens/settings/cache_management_page.dart';
+import 'package:spotiflac_android/screens/settings/backup_restore_page.dart';
 import 'package:spotiflac_android/screens/settings/donate_page.dart';
 import 'package:spotiflac_android/screens/settings/log_screen.dart';
 import 'package:spotiflac_android/utils/app_bar_layout.dart';
@@ -159,6 +160,13 @@ class SettingsTab extends ConsumerWidget {
                     subtitle: l10n.settingsAppSubtitle,
                     onTap: () =>
                         _navigateTo(context, const AppSettingsPage()),
+                  ),
+                  SettingsItem(
+                    icon: Icons.settings_backup_restore,
+                    title: l10n.settingsBackup,
+                    subtitle: l10n.settingsBackupSubtitle,
+                    onTap: () =>
+                        _navigateTo(context, const BackupRestorePage()),
                   ),
                   SettingsItem(
                     icon: Icons.article_outlined,

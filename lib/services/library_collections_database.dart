@@ -595,4 +595,97 @@ class LibraryCollectionsDatabase {
       );
     });
   }
+
+  /// Wipes every collection table and rewrites them from a restored backup.
+  ///
+  /// [collectionsJson] must use the same shape as
+  /// `LibraryCollectionsState.toJson()` (wishlist/loved/playlists/favoriteArtists).
+  /// Track entries carry a nested `track` map (stored as `track_json`); favorite
+  /// artist entries are stored whole as `artist_json`.
+  Future<void> replaceAllFromBackup(Map<String, dynamic> collectionsJson) async {
+    final nowIso = DateTime.now().toIso8601String();
+
+    List<Map<String, dynamic>> listOf(String key) {
+      final raw = collectionsJson[key];
+      if (raw is! List) return const [];
+      return raw
+          .whereType<Map<Object?, Object?>>()
+          .map((e) => Map<String, dynamic>.from(e))
+          .toList(growable: false);
+    }
+
+    final wishlist = listOf('wishlist');
+    final loved = listOf('loved');
+    final playlists = listOf('playlists');
+    final favoriteArtists = listOf('favoriteArtists');
+
+    final db = await database;
+    await db.transaction((txn) async {
+      await txn.delete(_tablePlaylistTracks);
+      await txn.delete(_tablePlaylists);
+      await txn.delete(_tableWishlist);
+      await txn.delete(_tableLoved);
+      await txn.delete(_tableFavoriteArtists);
+
+      Future<void> insertTrackEntries(
+        String table,
+        List<Map<String, dynamic>> entries,
+      ) async {
+        for (final entry in entries) {
+          final key = entry['key'] as String?;
+          final track = entry['track'];
+          if (key == null || key.isEmpty || track is! Map) continue;
+          await txn.insert(table, {
+            'track_key': key,
+            'track_json': jsonEncode(track),
+            'added_at': (entry['addedAt'] as String?) ?? nowIso,
+          }, conflictAlgorithm: ConflictAlgorithm.replace);
+        }
+      }
+
+      await insertTrackEntries(_tableWishlist, wishlist);
+      await insertTrackEntries(_tableLoved, loved);
+
+      for (final artist in favoriteArtists) {
+        final key = artist['key'] as String?;
+        if (key == null || key.isEmpty) continue;
+        await txn.insert(_tableFavoriteArtists, {
+          'artist_key': key,
+          'artist_json': jsonEncode(artist),
+          'added_at': (artist['addedAt'] as String?) ?? nowIso,
+        }, conflictAlgorithm: ConflictAlgorithm.replace);
+      }
+
+      for (final playlist in playlists) {
+        final id = playlist['id'] as String?;
+        if (id == null || id.isEmpty) continue;
+        final createdAt = (playlist['createdAt'] as String?) ?? nowIso;
+        final updatedAt = (playlist['updatedAt'] as String?) ?? createdAt;
+        await txn.insert(_tablePlaylists, {
+          'id': id,
+          'name': (playlist['name'] as String?) ?? '',
+          'cover_image_path': playlist['coverImagePath'] as String?,
+          'created_at': createdAt,
+          'updated_at': updatedAt,
+        }, conflictAlgorithm: ConflictAlgorithm.replace);
+
+        final tracksRaw = playlist['tracks'];
+        if (tracksRaw is! List) continue;
+        for (final trackEntry in tracksRaw.whereType<Map<Object?, Object?>>()) {
+          final entry = Map<String, dynamic>.from(trackEntry);
+          final key = entry['key'] as String?;
+          final track = entry['track'];
+          if (key == null || key.isEmpty || track is! Map) continue;
+          await txn.insert(_tablePlaylistTracks, {
+            'playlist_id': id,
+            'track_key': key,
+            'track_json': jsonEncode(track),
+            'added_at': (entry['addedAt'] as String?) ?? nowIso,
+          }, conflictAlgorithm: ConflictAlgorithm.replace);
+        }
+      }
+    });
+
+    _log.i('Restored collections from backup');
+  }
 }

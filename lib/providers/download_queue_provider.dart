@@ -1634,6 +1634,17 @@ class DownloadHistoryNotifier extends Notifier<DownloadHistoryState> {
   Future<int> getDatabaseCount() async {
     return await _db.getCount();
   }
+
+  /// Replaces all download history with [items] (each in the
+  /// [DownloadHistoryItem.toJson] shape) from a restored backup, then reloads
+  /// the in-memory state from storage.
+  Future<void> restoreFromBackup(List<Map<String, dynamic>> items) async {
+    await _db.clearAll();
+    if (items.isNotEmpty) {
+      await _db.upsertBatch(items);
+    }
+    await reloadFromStorage();
+  }
 }
 
 final downloadHistoryProvider =
