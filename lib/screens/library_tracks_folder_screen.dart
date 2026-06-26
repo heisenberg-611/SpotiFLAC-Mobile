@@ -639,7 +639,27 @@ class _LibraryTracksFolderScreenState
         ),
       ),
       actions: [
-        if (isPlaylistMode && !_isSelectionMode)
+        if (isPlaylistMode && !_isSelectionMode) ...[
+          IconButton(
+            tooltip: context.l10n.collectionRenamePlaylist,
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.4),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.edit_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            onPressed: () {
+              final id = widget.playlistId ?? playlist?.id;
+              if (id == null || id.isEmpty) return;
+              _showRenamePlaylistDialog(context, id, playlist?.name ?? title);
+            },
+          ),
           IconButton(
             icon: Container(
               padding: const EdgeInsets.all(8),
@@ -655,6 +675,7 @@ class _LibraryTracksFolderScreenState
             ),
             onPressed: () => _showCoverOptionsSheet(context, hasCustomCover),
           ),
+        ],
       ],
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
@@ -1071,6 +1092,71 @@ class _LibraryTracksFolderScreenState
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showRenamePlaylistDialog(
+    BuildContext context,
+    String playlistId,
+    String currentName,
+  ) async {
+    final controller = TextEditingController(text: currentName);
+    final formKey = GlobalKey<FormState>();
+
+    final nextName = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: Text(dialogContext.l10n.collectionRenamePlaylist),
+          content: Form(
+            key: formKey,
+            child: TextFormField(
+              controller: controller,
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: dialogContext.l10n.collectionPlaylistNameHint,
+              ),
+              validator: (value) {
+                final trimmed = value?.trim() ?? '';
+                if (trimmed.isEmpty) {
+                  return dialogContext.l10n.collectionPlaylistNameRequired;
+                }
+                return null;
+              },
+              onFieldSubmitted: (_) {
+                if (formKey.currentState?.validate() != true) return;
+                Navigator.of(dialogContext).pop(controller.text.trim());
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: Text(dialogContext.l10n.dialogCancel),
+            ),
+            FilledButton(
+              onPressed: () {
+                if (formKey.currentState?.validate() != true) return;
+                Navigator.of(dialogContext).pop(controller.text.trim());
+              },
+              child: Text(dialogContext.l10n.dialogSave),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (nextName == null || nextName.trim().isEmpty || !context.mounted) {
+      return;
+    }
+
+    await ref
+        .read(libraryCollectionsProvider.notifier)
+        .renamePlaylist(playlistId, nextName.trim());
+
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.l10n.collectionPlaylistRenamed)),
     );
   }
 }
