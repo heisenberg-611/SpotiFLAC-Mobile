@@ -3557,15 +3557,6 @@ class _QueueTabState extends ConsumerState<QueueTab> {
                       ),
                     ),
                   ),
-                if (item.track.hasAudioQuality)
-                  Positioned(
-                    left: 4,
-                    top: 4,
-                    child: AudioQualityBadge(
-                      label: item.track.audioQuality!,
-                      colorScheme: colorScheme,
-                    ),
-                  ),
               ],
             ),
           ),
