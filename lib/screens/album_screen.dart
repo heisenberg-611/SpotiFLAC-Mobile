@@ -256,12 +256,10 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
             _artistId = artistId;
             _albumType = albumType;
             _albumTotalTracks = totalTracks;
-            _headerVideoUrl =
-                (headerVideo != null && headerVideo.isNotEmpty)
+            _headerVideoUrl = (headerVideo != null && headerVideo.isNotEmpty)
                 ? headerVideo
                 : _headerVideoUrl;
-            _headerImageUrl =
-                (headerImage != null && headerImage.isNotEmpty)
+            _headerImageUrl = (headerImage != null && headerImage.isNotEmpty)
                 ? headerImage
                 : _headerImageUrl;
             _audioTraits = (audioTraits != null && audioTraits.isNotEmpty)
@@ -312,12 +310,10 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
             _artistId = artistId;
             _albumType = albumType;
             _albumTotalTracks = totalTracks;
-            _headerVideoUrl =
-                (headerVideo != null && headerVideo.isNotEmpty)
+            _headerVideoUrl = (headerVideo != null && headerVideo.isNotEmpty)
                 ? headerVideo
                 : _headerVideoUrl;
-            _headerImageUrl =
-                (headerImage != null && headerImage.isNotEmpty)
+            _headerImageUrl = (headerImage != null && headerImage.isNotEmpty)
                 ? headerImage
                 : _headerImageUrl;
             _audioTraits = (audioTraits != null && audioTraits.isNotEmpty)
@@ -424,12 +420,15 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
       add(trait);
     }
 
-    return Wrap(
-      alignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 0,
-      runSpacing: 4,
-      children: items,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 20),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 0,
+        runSpacing: 4,
+        children: items,
+      ),
     );
   }
 
@@ -536,7 +535,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
         motionUrl.trim().isNotEmpty &&
         Uri.tryParse(motionUrl)?.hasAuthority == true;
     final coverThumbUrl = widget.coverUrl ?? _headerImageUrl;
-    final showSquareCover = !hasMotion && coverThumbUrl != null;
+    final showSquareCover = !hasMotion;
     _tallHeader = false;
     final expandedHeight = _calculateExpandedHeight(context);
 
@@ -659,27 +658,41 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(16),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        _highResCoverUrl(coverThumbUrl) ??
-                                        coverThumbUrl,
-                                    fit: BoxFit.cover,
-                                    width: coverSize,
-                                    height: coverSize,
-                                    memCacheWidth: cacheWidth,
-                                    cacheManager: CoverCacheManager.instance,
-                                    placeholder: (_, _) => Container(
-                                      color: colorScheme.surfaceContainerHighest,
-                                    ),
-                                    errorWidget: (_, _, _) => Container(
-                                      color: colorScheme.surfaceContainerHighest,
-                                      child: Icon(
-                                        Icons.album,
-                                        size: 48,
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ),
+                                  child: coverThumbUrl != null
+                                      ? CachedNetworkImage(
+                                          imageUrl:
+                                              _highResCoverUrl(coverThumbUrl) ??
+                                              coverThumbUrl,
+                                          fit: BoxFit.cover,
+                                          width: coverSize,
+                                          height: coverSize,
+                                          memCacheWidth: cacheWidth,
+                                          cacheManager:
+                                              CoverCacheManager.instance,
+                                          placeholder: (_, _) => Container(
+                                            color: colorScheme
+                                                .surfaceContainerHighest,
+                                          ),
+                                          errorWidget: (_, _, _) => Container(
+                                            color: colorScheme
+                                                .surfaceContainerHighest,
+                                            child: Icon(
+                                              Icons.album,
+                                              size: 48,
+                                              color:
+                                                  colorScheme.onSurfaceVariant,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(
+                                          color: colorScheme
+                                              .surfaceContainerHighest,
+                                          child: Icon(
+                                            Icons.album,
+                                            size: 48,
+                                            color: colorScheme.onSurfaceVariant,
+                                          ),
+                                        ),
                                 ),
                               );
                             },
@@ -715,41 +728,42 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ],
-                        if (tracks.isNotEmpty) ...[
-                          const SizedBox(height: 12),
-                          _buildHeaderMeta(context, releaseDate),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildLoveAllButton(),
-                              const SizedBox(width: 12),
-                              Flexible(
-                                child: FilledButton.icon(
-                                  onPressed: () => _downloadAll(context),
-                                  icon: Icon(Icons.download, size: 18),
-                                  label: Text(
-                                    context.l10n.downloadAllCount(
-                                      tracks.length,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  style: FilledButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    foregroundColor: Colors.black87,
-                                    minimumSize: const Size(0, 48),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
+                        const SizedBox(height: 12),
+                        _buildHeaderMeta(context, releaseDate),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildLoveAllButton(),
+                            const SizedBox(width: 12),
+                            Flexible(
+                              child: FilledButton.icon(
+                                onPressed: tracks.isEmpty
+                                    ? null
+                                    : () => _downloadAll(context),
+                                icon: const Icon(Icons.download, size: 18),
+                                label: Text(
+                                  context.l10n.downloadAllCount(tracks.length),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black87,
+                                  disabledBackgroundColor: Colors.white
+                                      .withValues(alpha: 0.45),
+                                  disabledForegroundColor: Colors.black54,
+                                  minimumSize: const Size(0, 48),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24),
                                   ),
                                 ),
                               ),
-                              const SizedBox(width: 12),
-                              _buildAddToPlaylistButton(context),
-                            ],
-                          ),
-                        ],
+                            ),
+                            const SizedBox(width: 12),
+                            _buildAddToPlaylistButton(context),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -813,9 +827,7 @@ class _AlbumScreenState extends ConsumerState<AlbumScreen> {
       lines.add(_formatReleaseDate(releaseDate));
     }
     final countText = context.l10n.tracksCount(tracks.length);
-    lines.add(
-      totalMinutes > 0 ? '$countText • $totalMinutes min' : countText,
-    );
+    lines.add(totalMinutes > 0 ? '$countText • $totalMinutes min' : countText);
 
     return SliverToBoxAdapter(
       child: Padding(

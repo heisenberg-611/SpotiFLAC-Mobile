@@ -313,6 +313,19 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
               motionUrl != null &&
               motionUrl.trim().isNotEmpty &&
               Uri.tryParse(motionUrl)?.hasAuthority == true;
+          Widget playlistPlaceholder({double? size}) {
+            return Container(
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Icon(
+                Icons.playlist_play,
+                size: size ?? 80,
+                color: colorScheme.onSurfaceVariant,
+              ),
+            );
+          }
 
           return FlexibleSpaceBar(
             collapseMode: CollapseMode.pin,
@@ -332,7 +345,7 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
                             errorWidget: (_, _, _) =>
                                 Container(color: colorScheme.surface),
                           )
-                        : Container(color: colorScheme.surface),
+                        : playlistPlaceholder(),
                   )
                 else if (_coverUrl != null)
                   ImageFiltered(
@@ -348,34 +361,26 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
                     ),
                   )
                 else
-                  Container(
-                    color: colorScheme.surfaceContainerHighest,
-                    child: Icon(
-                      Icons.playlist_play,
-                      size: 80,
-                      color: colorScheme.onSurfaceVariant,
-                    ),
-                  ),
+                  playlistPlaceholder(),
                 Container(color: Colors.black.withValues(alpha: 0.35)),
-                if (_coverUrl != null)
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    height: expandedHeight * 0.65,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black.withValues(alpha: 0.6),
-                          ],
-                        ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: expandedHeight * 0.65,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.black.withValues(alpha: 0.6),
+                        ],
                       ),
                     ),
                   ),
+                ),
                 Positioned.fill(
                   child: AnimatedOpacity(
                     duration: const Duration(milliseconds: 150),
@@ -393,14 +398,11 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
                             : MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          if (_coverUrl != null && !hasMotion) ...[
+                          if (!hasMotion) ...[
                             Builder(
                               builder: (context) {
-                                final coverSize =
-                                    (constraints.maxWidth * 0.5).clamp(
-                                      140.0,
-                                      220.0,
-                                    );
+                                final coverSize = (constraints.maxWidth * 0.5)
+                                    .clamp(140.0, 220.0);
                                 return Container(
                                   width: coverSize,
                                   height: coverSize,
@@ -416,28 +418,22 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
                                       ),
                                     ],
                                   ),
-                                  child: CachedCoverImage(
-                                    imageUrl:
-                                        _highResCoverUrl(_coverUrl) ??
-                                        _coverUrl!,
-                                    fit: BoxFit.cover,
-                                    memCacheWidth: cacheWidth,
-                                    borderRadius: BorderRadius.circular(16),
-                                    placeholder: (_, _) => Container(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            colorScheme.surfaceContainerHighest,
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                    ),
-                                    errorWidget: (_, _, _) => Container(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            colorScheme.surfaceContainerHighest,
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                    ),
-                                  ),
+                                  child: _coverUrl != null
+                                      ? CachedCoverImage(
+                                          imageUrl:
+                                              _highResCoverUrl(_coverUrl) ??
+                                              _coverUrl!,
+                                          fit: BoxFit.cover,
+                                          memCacheWidth: cacheWidth,
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
+                                          placeholder: (_, _) =>
+                                              playlistPlaceholder(),
+                                          errorWidget: (_, _, _) =>
+                                              playlistPlaceholder(size: 48),
+                                        )
+                                      : playlistPlaceholder(size: 48),
                                 );
                               },
                             ),
@@ -455,51 +451,49 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          if (_tracks.isNotEmpty) ...[
-                            const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.2),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(
-                                    Icons.playlist_play,
-                                    size: 14,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    context.l10n.tracksCount(_tracks.length),
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                          const SizedBox(height: 34),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
                             ),
-                            const SizedBox(height: 16),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                _buildLoveAllButton(),
-                                const SizedBox(width: 12),
-                                Flexible(
-                                  child: _buildDownloadAllCenterButton(context),
+                                const Icon(
+                                  Icons.playlist_play,
+                                  size: 14,
+                                  color: Colors.white,
                                 ),
-                                const SizedBox(width: 12),
-                                _buildAddToPlaylistButton(context),
+                                const SizedBox(width: 4),
+                                Text(
+                                  context.l10n.tracksCount(_tracks.length),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ],
                             ),
-                          ],
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _buildLoveAllButton(),
+                              const SizedBox(width: 12),
+                              Flexible(
+                                child: _buildDownloadAllCenterButton(context),
+                              ),
+                              const SizedBox(width: 12),
+                              _buildAddToPlaylistButton(context),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -565,9 +559,7 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
       lines.add(_formatReleaseDate(releaseDate));
     }
     final countText = context.l10n.tracksCount(tracks.length);
-    lines.add(
-      totalMinutes > 0 ? '$countText • $totalMinutes min' : countText,
-    );
+    lines.add(totalMinutes > 0 ? '$countText • $totalMinutes min' : countText);
 
     return SliverToBoxAdapter(
       child: Padding(
@@ -666,11 +658,8 @@ class _PlaylistScreenState extends ConsumerState<PlaylistScreen> {
             child: _PlaylistTrackItem(
               track: track,
               isInHistory: isInHistory,
-              onDownload: () => _downloadTrack(
-                context,
-                track,
-                playlistPosition: index + 1,
-              ),
+              onDownload: () =>
+                  _downloadTrack(context, track, playlistPosition: index + 1),
             ),
           ),
         );
