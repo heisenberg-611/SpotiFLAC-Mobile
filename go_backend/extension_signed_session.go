@@ -34,6 +34,10 @@ type signedSessionRecord struct {
 	SessionID     string `json:"session_id,omitempty"`
 	SessionSecret string `json:"session_secret,omitempty"`
 	ExpiresAt     string `json:"expires_at,omitempty"`
+	Namespace     string `json:"namespace,omitempty"`
+	BaseURL       string `json:"base_url,omitempty"`
+	AppVersion    string `json:"app_version,omitempty"`
+	Platform      string `json:"platform,omitempty"`
 }
 
 type signedSessionExchangeResponse struct {
@@ -93,7 +97,14 @@ func (r *extensionRuntime) signedSessionFilePath(config SignedSessionConfig) (st
 	if err := os.MkdirAll(dir, 0700); err != nil {
 		return "", err
 	}
-	return filepath.Join(dir, namespace+".json"), nil
+	scope := strings.Join([]string{
+		namespace,
+		strings.TrimSpace(strings.ToLower(config.BaseURL)),
+		strings.TrimSpace(strings.ToLower(config.AppVersion)),
+		strings.TrimSpace(strings.ToLower(config.Platform)),
+	}, "\n")
+	sum := sha256.Sum256([]byte(scope))
+	return filepath.Join(dir, namespace+"-"+hex.EncodeToString(sum[:])[:16]+".json"), nil
 }
 
 func sanitizeSignedSessionNamespace(namespace string) string {
@@ -118,11 +129,38 @@ func (r *extensionRuntime) loadSignedSession(config SignedSessionConfig) (*signe
 	}
 	if strings.TrimSpace(record.InstallID) == "" {
 		record.InstallID = randomHex(16)
-		if err := r.saveSignedSession(config, record); err != nil {
-			return nil, err
-		}
+	}
+	normalizeSignedSessionRecordScope(config, record)
+	if err := r.saveSignedSession(config, record); err != nil {
+		return nil, err
 	}
 	return record, nil
+}
+
+func normalizeSignedSessionRecordScope(config SignedSessionConfig, record *signedSessionRecord) {
+	namespace := sanitizeSignedSessionNamespace(config.Namespace)
+	baseURL := strings.TrimSpace(config.BaseURL)
+	appVersion := strings.TrimSpace(config.AppVersion)
+	platform := strings.TrimSpace(config.Platform)
+	if record.Namespace == "" && record.BaseURL == "" && record.AppVersion == "" && record.Platform == "" {
+		record.Namespace = namespace
+		record.BaseURL = baseURL
+		record.AppVersion = appVersion
+		record.Platform = platform
+		return
+	}
+	if record.Namespace != namespace ||
+		record.BaseURL != baseURL ||
+		record.AppVersion != appVersion ||
+		record.Platform != platform {
+		record.SessionID = ""
+		record.SessionSecret = ""
+		record.ExpiresAt = ""
+	}
+	record.Namespace = namespace
+	record.BaseURL = baseURL
+	record.AppVersion = appVersion
+	record.Platform = platform
 }
 
 func (r *extensionRuntime) saveSignedSession(config SignedSessionConfig, record *signedSessionRecord) error {
@@ -180,6 +218,9 @@ func (r *extensionRuntime) signedSessionStatus(call goja.FunctionCall) goja.Valu
 		"authenticated": authenticated,
 		"expires_at":    record.ExpiresAt,
 		"install_id":    record.InstallID,
+		"session_id":    record.SessionID,
+		"app_version":   config.AppVersion,
+		"platform":      config.Platform,
 	})
 }
 
